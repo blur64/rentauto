@@ -85,7 +85,7 @@ const routes = [
   { path: "/request", component: "RequestPage", isDarkMode: true },
 ];
 
-function fetchCarsData() {
+function fetchCars() {
   return Promise.resolve(carsData).then(result => result);
 }
 
@@ -101,4 +101,4 @@ function fetchRoutes() {
   return routes;
 }
 
-export { fetchCarsData, fetchAddresses, fetchCarsNames, fetchRoutes };
+export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes };

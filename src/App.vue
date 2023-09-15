@@ -26,8 +26,8 @@
 // [x] delete currentMainComponent, add currentRoute computed
 // instead, in :is use currentRoute.component
 // [] resolve how to not pass :isDarkMode prop to Header.vue component
-// [] add changeLocation method
-// [] make sure location.pathname is safe to use
+// [x] add changeLocation method
+// [x] make sure location.pathname is safe to use
 
 import PreviewPage from "@/pages/PreviewPage.vue";
 import AboutUsPage from "@/pages/AboutUsPage.vue";

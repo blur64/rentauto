@@ -2,26 +2,26 @@
   <section
     class="gallery-section"
     id="gallery-section__id"
-    v-if="hasCarsDataLoaded"
+    v-if="haveCarsLoaded"
   >
     <div v-if="fullSizeMiniImageSrc" class="gallery__shadow"></div>
     <div class="container">
       <div class="gallery__car-info__wrapper">
         <div class="gallery__car-info__main-info">
           <div>
-            <h2 class="gallery__car-info__name">{{ currentCarInfo.name }}</h2>
+            <h2 class="gallery__car-info__name">{{ currentCar.name }}</h2>
             <div>
               <div class="gallery__car-info__cost__wrapper">
                 от
                 <span class="gallery__car-info__cost">{{
-                  currentCarInfo.cost
+                  currentCar.cost
                 }}</span>
                 руб.
               </div>
               <div class="gallery__car-info__pledge__wrapper">
                 Залог
                 <span class="gallery__car-info__pledge">{{
-                  currentCarInfo.pledge
+                  currentCar.pledge
                 }}</span>
                 руб.
               </div>
@@ -42,7 +42,7 @@
         <div class="gallery__car-info__characteristics__wrapper">
           <ul class="gallery__car-info__characteristics">
             <li
-              v-for="(char, idx) of currentCarInfo.characteristics"
+              v-for="(char, idx) of currentCar.characteristics"
               :key="idx"
               class="gallery__car-info__characteristics__item"
             >
@@ -52,7 +52,7 @@
         </div>
         <div class="gallery__car-info__mini-imgs">
           <img
-            v-for="(imgSrc, idx) of currentCarInfo.miniImgsSrcs"
+            v-for="(imgSrc, idx) of currentCar.miniImgsSrcs"
             :key="idx"
             :src="require(`@/assets/${imgSrc}`)"
             @click="fullSizeMiniImageSrc = imgSrc"
@@ -65,7 +65,7 @@
         <div class="gallery__slider__wrapper">
           <button
             class="button gallery__slider__button-left"
-            @click="decreaseCurrentCarIndex"
+            @click="showPrevCar"
           >
             <img src="@/assets/imgs/left_arrow.svg" alt="" />
           </button>
@@ -73,7 +73,7 @@
           <div class="gallery__slider">
             <div
               class="gallery__slider__images__wrapper"
-              :style="{ right: `${currentShiftCount}px` }"
+              :style="{ right: `${currentSliderShift}px` }"
               ref="slider"
             >
               <img
@@ -87,7 +87,7 @@
           <!-- slider end -->
           <button
             class="button gallery__slider__button-right"
-            @click="increaseCurrentCarIndex"
+            @click="showNextCar"
           >
             <img src="@/assets/imgs/right_arrow.svg" alt="" />
           </button>
@@ -95,7 +95,7 @@
         <div class="gallery__slider__pagination__wrapper">
           <div class="gallery__slider__pagination">
             <div
-              v-for="(_, idx) in carsData"
+              v-for="(_, idx) in cars"
               :key="idx"
               :class="{ colored: idx === currentCarIndex }"
               @click="currentCarIndex = idx"
@@ -124,51 +124,51 @@
 
 <script>
 // [] pushPath in pushPath
-// [] change imgSrc to imgFileName (src is full path to img, not only it's name)
 // [] fix slider UI when window resized
-// [] rename increase and decreaseCurrentCarIndex methods names to showNextCar
-// and showPrevCar
+// [x] rename increaseCurrentCarIndex and decreaseCurrentCarIndex methods names to
+// showNextCar and showPrevCar
 // [] cahnge pagination template
-// [] rename currentCarInfo to currentCar
-// [] rename calculateOneShiftCount
+// [x] rename currentCarInfo to currentCar
+// [x] rename calculateOneShiftCount
 
 import { updateStore } from "@/store.js";
-import { fetchCarsData } from "@/api.js";
+import { fetchCars } from "@/api.js";
 import { pushPath } from "@/routing.js";
 
 export default {
   data() {
     return {
-      hasCarsDataLoaded: false,
+      haveCarsLoaded: false,
 
-      carsData: [],
+      cars: [],
+
       sliderImgsSrcs: [],
-
       fullSizeMiniImageSrc: null,
 
       currentCarIndex: 0,
-      currentShiftCount: 0,
-      oneShiftCount: 0,
+
+      // shifts in pixels
+      currentSliderShift: 0,
+      oneSliderShift: 0,
     };
   },
 
   computed: {
-    currentCarInfo() {
-      return this.carsData[this.currentCarIndex];
+    currentCar() {
+      return this.cars[this.currentCarIndex];
     },
   },
 
   methods: {
-    increaseCurrentCarIndex() {
-      const canIncreaseCarIndex =
-        this.currentCarIndex + 1 < this.carsData.length;
+    showNextCar() {
+      const canIncreaseCarIndex = this.currentCarIndex + 1 < this.cars.length;
 
       if (canIncreaseCarIndex) {
         this.currentCarIndex++;
       }
     },
 
-    decreaseCurrentCarIndex() {
+    showPrevCar() {
       const canDecreaseCarIndex = this.currentCarIndex - 1 >= 0;
 
       if (canDecreaseCarIndex) {
@@ -177,42 +177,42 @@ export default {
     },
 
     selectCar() {
-      updateStore("car", this.currentCarInfo.name);
+      updateStore("car", this.currentCar.name);
     },
 
     pushPath(path) {
       pushPath(path);
     },
 
-    calculateOneShiftCount() {
+    calculateOneSliderShift() {
       if (this.$refs.slider) {
-        this.oneShiftCount = this.$refs.slider.clientWidth;
+        this.oneSliderShift = this.$refs.slider.clientWidth;
       }
     },
   },
 
   watch: {
     currentCarIndex(current, prev) {
-      const difference = current - prev;
-      this.currentShiftCount += this.oneShiftCount * difference;
+      const shiftFactor = current - prev;
+      this.currentSliderShift += this.oneSliderShift * shiftFactor;
     },
   },
 
   mounted() {
-    fetchCarsData().then((carsData) => {
-      this.carsData = carsData;
-      this.sliderImgsSrcs = carsData.map((carData) => carData.mainImgSrc);
-      this.hasCarsDataLoaded = true;
+    fetchCars().then((cars) => {
+      this.cars = cars;
+      this.sliderImgsSrcs = cars.map((car) => car.mainImgSrc);
+      this.haveCarsLoaded = true;
 
       this.$nextTick(() => {
-        window.addEventListener("resize", this.calculateOneShiftCount);
-        this.calculateOneShiftCount();
+        window.addEventListener("resize", this.calculateOneSliderShift);
+        this.calculateOneSliderShift();
       });
     });
   },
 
   beforeUnmounted() {
-    window.removeEventListener("resize", this.calculateOneShiftCount);
+    window.removeEventListener("resize", this.calculateOneSliderShift);
   },
 };
 </script>

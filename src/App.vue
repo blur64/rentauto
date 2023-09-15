@@ -1,13 +1,13 @@
 <template>
   <div class="main__wrapper">
-    <v-header :isDarkMode="isDarkMode" :currentPath="currentPath" />
+    <the-header :isDarkMode="isDarkMode" :currentPath="currentPath" />
     <component :is="currentMainComponent"></component>
   </div>
 </template>
 
 <script>
-// checked: App.vue, VAboutUs.vue, VPreview.vue, VHeader.vue,
-// main.js, VInput.vue, VSelect.vue, VCarSelect.vue, api.js,
+// checked: App.vue, AboutUsPage.vue, VPreview.vue, TheHeader.vue,
+// main.js, VInput.vue, VSelect.vue, CarSelectPage.vue, api.js,
 
 // [] rename components following best vue practices
 // [] add routing.js as a plugin to Vue or find out another way
@@ -29,29 +29,29 @@
 // [] add changeLocation method
 // [] make sure location.pathname is safe to use
 
-import VPreview from "@/components/VPreview.vue";
-import VAboutUs from "@/components/VAboutUs.vue";
-import VCarSelect from "@/components/VCarSelect.vue";
-import VRequest from "@/components/VRequest.vue";
-import VHeader from "@/components/VHeader.vue";
+import PreviewPage from "@/pages/PreviewPage.vue";
+import AboutUsPage from "@/pages/AboutUsPage.vue";
+import CarSelectPage from "@/pages/CarSelectPage.vue";
+import RequestPage from "@/pages/RequestPage.vue";
+import TheHeader from "@/components/TheHeader.vue";
 
 export default {
   components: {
-    VPreview,
-    VAboutUs,
-    VCarSelect,
-    VRequest,
-    VHeader,
+    PreviewPage,
+    AboutUsPage,
+    CarSelectPage,
+    RequestPage,
+    TheHeader,
   },
 
   data() {
     return {
       currentPath: "",
       routes: [
-        { path: "/", component: "VPreview", isDarkMode: true },
-        { path: "/about", component: "VAboutUs", isDarkMode: false },
-        { path: "/car", component: "VCarSelect", isDarkMode: false },
-        { path: "/request", component: "VRequest", isDarkMode: true },
+        { path: "/", component: "PreviewPage", isDarkMode: true },
+        { path: "/about", component: "AboutUsPage", isDarkMode: false },
+        { path: "/car", component: "CarSelectPage", isDarkMode: false },
+        { path: "/request", component: "RequestPage", isDarkMode: true },
       ],
     };
   },

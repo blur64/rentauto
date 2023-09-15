@@ -12,10 +12,10 @@
       <h3 class="request__form__section-title">Получение автомобиля</h3>
       <div class="request__form__controls">
         <div class="request__form__control-wrapper">
-          <v-select :options="addresses" v-model="gettingAddress" />
+          <base-select :options="addresses" v-model="gettingAddress" />
         </div>
         <div class="request__form__control-wrapper">
-          <v-input
+          <base-input
             v-model="gettingDate"
             :min="getCurrentDateString()"
             :errorMessages="getErrorMessages('gettingDate')"
@@ -30,10 +30,10 @@
       <h3 class="request__form__section-title">Возврат автомобиля</h3>
       <div class="request__form__controls">
         <div class="request__form__control-wrapper">
-          <v-select :options="addresses" v-model="returningAddress" />
+          <base-select :options="addresses" v-model="returningAddress" />
         </div>
         <div class="request__form__control-wrapper">
-          <v-input
+          <base-input
             v-model="returningDate"
             :errorMessages="getErrorMessages('returningDate')"
             :isValid="getValidity('returningDate')"
@@ -48,7 +48,7 @@
       <h3 class="request__form__section-title">Автомобиль</h3>
       <div class="request__form__controls">
         <div class="request__form__control-wrapper">
-          <v-select
+          <base-select
             class="request__form__car-selection-section__input"
             v-model="carName"
             :options="carsNames"
@@ -68,7 +68,7 @@
 
       <div class="request__form__controls">
         <div class="request__form__control-wrapper">
-          <v-input
+          <base-input
             v-model="userName"
             :errorMessages="getErrorMessages('userName')"
             :isValid="getValidity('userName')"
@@ -79,7 +79,7 @@
           />
         </div>
         <div class="request__form__control-wrapper">
-          <v-input
+          <base-input
             v-model="userPhone"
             :errorMessages="getErrorMessages('userPhone')"
             :isValid="getValidity('userPhone')"
@@ -112,8 +112,8 @@
 </template>
 
 <script>
-import VInput from "@/components/VInput.vue";
-import VSelect from "@/components/VSelect.vue";
+import BaseInput from "@/components/BaseInput.vue";
+import BaseSelect from "@/components/BaseSelect.vue";
 
 import { subscribeToUpdate } from "@/store.js";
 
@@ -126,8 +126,8 @@ import { fetchCarsNames, fetchAddresses } from "@/api.js";
 
 export default {
   components: {
-    VInput,
-    VSelect,
+    BaseInput,
+    BaseSelect,
   },
 
   setup() {

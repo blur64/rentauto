@@ -1,16 +1,16 @@
 <template>
   <section class="request-section" id="request-section__id">
     <div class="container">
-      <v-form />
+      <the-form />
     </div>
   </section>
 </template>
 
 <script>
-import VForm from "./VForm.vue";
+import TheForm from "../components/TheForm.vue";
 
 export default {
-  components: { VForm },
+  components: { TheForm },
 };
 </script>
 

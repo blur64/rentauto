@@ -64,17 +64,22 @@ export default {
     },
   },
 
-  created() {
-    window.addEventListener("popstate", () => {
+  methods: {
+    changeLocation() {
       this.currentPath = location.pathname;
-    });
+    },
+  },
 
-    this.currentPath = location.pathname;
-
+  created() {
     this.routes = fetchRoutes();
+
     this.darkModePaths = this.routes
       .filter((r) => r.isDarkMode)
       .map((r) => r.path);
+
+    this.changeLocation();
+
+    window.addEventListener("popstate", this.changeLocation);
   },
 
   watch: {

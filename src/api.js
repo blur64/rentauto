@@ -78,7 +78,12 @@ const formData = {
   ],
 };
 
-
+const routes = [
+  { path: "/", component: "PreviewPage", isDarkMode: true },
+  { path: "/about", component: "AboutUsPage", isDarkMode: false },
+  { path: "/car", component: "CarSelectPage", isDarkMode: false },
+  { path: "/request", component: "RequestPage", isDarkMode: true },
+];
 
 function fetchCarsData() {
   return Promise.resolve(carsData).then(result => result);
@@ -92,4 +97,8 @@ function fetchCarsNames() {
   return Promise.resolve(carsData.map((carData) => carData.name)).then(result => result);
 }
 
-export { fetchCarsData, fetchAddresses, fetchCarsNames };
+function fetchRoutes() {
+  return routes;
+}
+
+export { fetchCarsData, fetchAddresses, fetchCarsNames, fetchRoutes };

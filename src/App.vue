@@ -9,7 +9,7 @@
 // checked: App.vue, AboutUsPage.vue, VPreview.vue, TheHeader.vue,
 // main.js, VInput.vue, VSelect.vue, CarSelectPage.vue, api.js,
 
-// [] rename components following best vue practices
+// [x] rename components following best vue practices
 // [] add routing.js as a plugin to Vue or find out another way
 // to not call pushPath method in pushPath method
 // [] think about moving isDarkMode flag to store
@@ -20,7 +20,7 @@
 // just can be loaded together with .js files)
 // [] think about moving of fetchCarsNames function to App.vue
 
-// [] move routes from data() attribute to api.js
+// [x] move routes from data() attribute to api.js
 // [] add to every routes item isDarkMode property
 // [] change logic with darkMode using the isDarkMode property
 // ? [] delete currentMainComponent, add currentRoute computed
@@ -35,6 +35,8 @@ import CarSelectPage from "@/pages/CarSelectPage.vue";
 import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
+import { fetchRoutes } from "./api";
+
 export default {
   components: {
     PreviewPage,
@@ -47,12 +49,7 @@ export default {
   data() {
     return {
       currentPath: "",
-      routes: [
-        { path: "/", component: "PreviewPage", isDarkMode: true },
-        { path: "/about", component: "AboutUsPage", isDarkMode: false },
-        { path: "/car", component: "CarSelectPage", isDarkMode: false },
-        { path: "/request", component: "RequestPage", isDarkMode: true },
-      ],
+      routes: [],
     };
   },
 
@@ -76,6 +73,8 @@ export default {
     });
 
     this.currentPath = location.pathname;
+
+    this.routes = fetchRoutes();
   },
 
   watch: {

@@ -1,7 +1,7 @@
 <template>
   <div class="main__wrapper">
     <the-header :isDarkMode="isDarkMode" :currentPath="currentPath" />
-    <component :is="currentMainComponent"></component>
+    <component :is="currentRoute.component"></component>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
 // [x] move routes from data() attribute to api.js
 // [x] add to every routes item isDarkMode property
 // [x] change logic with darkMode using the isDarkMode property
-// ? [] delete currentMainComponent, add currentRoute computed
+// [x] delete currentMainComponent, add currentRoute computed
 // instead, in :is use currentRoute.component
 // [] resolve how to not pass :isDarkMode prop to Header.vue component
 // [] add changeLocation method
@@ -55,12 +55,8 @@ export default {
   },
 
   computed: {
-    currentMainComponent() {
-      const currentRoute = this.routes.find(
-        (route) => route.path === this.currentPath
-      );
-
-      return currentRoute.component;
+    currentRoute() {
+      return this.routes.find((route) => route.path === this.currentPath);
     },
 
     isDarkMode() {

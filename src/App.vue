@@ -21,8 +21,8 @@
 // [] think about moving of fetchCarsNames function to App.vue
 
 // [x] move routes from data() attribute to api.js
-// [] add to every routes item isDarkMode property
-// [] change logic with darkMode using the isDarkMode property
+// [x] add to every routes item isDarkMode property
+// [x] change logic with darkMode using the isDarkMode property
 // ? [] delete currentMainComponent, add currentRoute computed
 // instead, in :is use currentRoute.component
 // [] resolve how to not pass :isDarkMode prop to Header.vue component
@@ -50,6 +50,7 @@ export default {
     return {
       currentPath: "",
       routes: [],
+      darkModePaths: [],
     };
   },
 
@@ -63,7 +64,7 @@ export default {
     },
 
     isDarkMode() {
-      return this.currentPath === "/car" || this.currentPath === "/request";
+      return this.darkModePaths.includes(this.currentPath);
     },
   },
 
@@ -75,6 +76,9 @@ export default {
     this.currentPath = location.pathname;
 
     this.routes = fetchRoutes();
+    this.darkModePaths = this.routes
+      .filter((r) => r.isDarkMode)
+      .map((r) => r.path);
   },
 
   watch: {

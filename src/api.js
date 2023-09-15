@@ -79,9 +79,9 @@ const formData = {
 };
 
 const routes = [
-  { path: "/", component: "PreviewPage", isDarkMode: true },
+  { path: "/", component: "PreviewPage", isDarkMode: false },
   { path: "/about", component: "AboutUsPage", isDarkMode: false },
-  { path: "/car", component: "CarSelectPage", isDarkMode: false },
+  { path: "/car", component: "CarSelectPage", isDarkMode: true },
   { path: "/request", component: "RequestPage", isDarkMode: true },
 ];
 

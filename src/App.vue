@@ -1,0 +1,271 @@
+<template>
+  <div class="main__wrapper">
+    <v-header :isDarkMode="isDarkMode" :currentPath="currentPath" />
+    <component :is="currentMainComponent"></component>
+  </div>
+</template>
+
+<script>
+// checked: App.vue, VAboutUs.vue, VPreview.vue, VHeader.vue,
+// main.js, VInput.vue, VSelect.vue, VCarSelect.vue, api.js,
+
+// [] rename components following best vue practices
+// [] add routing.js as a plugin to Vue or find out another way
+// to not call pushPath method in pushPath method
+// [] think about moving isDarkMode flag to store
+// [] check correctness of BEM using
+// [] think about class names in template
+// [] think about fetch requests in api (maybe it will be better to
+// delete all data requests because this data is very small and it
+// just can be loaded together with .js files)
+// [] think about moving of fetchCarsNames function to App.vue
+
+// [] move routes from data() attribute to api.js
+// [] add to every routes item isDarkMode property
+// [] change logic with darkMode using the isDarkMode property
+// ? [] delete currentMainComponent, add currentRoute computed
+// instead, in :is use currentRoute.component
+// [] resolve how to not pass :isDarkMode prop to Header.vue component
+// [] add changeLocation method
+// [] make sure location.pathname is safe to use
+
+import VPreview from "@/components/VPreview.vue";
+import VAboutUs from "@/components/VAboutUs.vue";
+import VCarSelect from "@/components/VCarSelect.vue";
+import VRequest from "@/components/VRequest.vue";
+import VHeader from "@/components/VHeader.vue";
+
+export default {
+  components: {
+    VPreview,
+    VAboutUs,
+    VCarSelect,
+    VRequest,
+    VHeader,
+  },
+
+  data() {
+    return {
+      currentPath: "",
+      routes: [
+        { path: "/", component: "VPreview", isDarkMode: true },
+        { path: "/about", component: "VAboutUs", isDarkMode: false },
+        { path: "/car", component: "VCarSelect", isDarkMode: false },
+        { path: "/request", component: "VRequest", isDarkMode: true },
+      ],
+    };
+  },
+
+  computed: {
+    currentMainComponent() {
+      const currentRoute = this.routes.find(
+        (route) => route.path === this.currentPath
+      );
+
+      return currentRoute.component;
+    },
+
+    isDarkMode() {
+      return this.currentPath === "/car" || this.currentPath === "/request";
+    },
+  },
+
+  created() {
+    window.addEventListener("popstate", () => {
+      this.currentPath = location.pathname;
+    });
+
+    this.currentPath = location.pathname;
+  },
+
+  watch: {
+    isDarkMode(newValue) {
+      if (newValue === true) {
+        document.body.style.backgroundColor = "#262424";
+      } else {
+        document.body.style.backgroundColor = "";
+      }
+    },
+  },
+};
+</script>
+
+<style>
+/* Project Variables */
+
+:root {
+  --main-white: #fafafa;
+  --main-black: #262424;
+  --secondary: #d0af38;
+  --error: #da0000;
+
+  --fs-very-big: 32px;
+  --fs-big: 24px;
+  --fs-medium: 20px;
+  --fs-small: 16px;
+  --fs-very-small: 14px;
+
+  --w-light: 300;
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-bold: 700;
+}
+
+/* Project Fonts */
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("@/assets/fonts/ttf/Inter-Light.ttf") format("ttf"),
+    url("@/assets/fonts/woff/Inter-Light.woff") format("woff");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("@/assets/fonts/ttf/Inter-Regular.ttf") format("ttf"),
+    url("@/assets/fonts/woff/Inter-Regular.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("@/assets/fonts/ttf/Inter-Medium.ttf") format("ttf"),
+    url("@/assets/fonts/woff/Inter-Medium.woff") format("woff");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"), url("@/assets/fonts/ttf/Inter-Bold.ttf") format("ttf"),
+    url("@/assets/fonts/woff/Inter-Bold.woff") format("woff");
+  font-weight: 700;
+}
+
+/* Basic Rules */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main-black);
+}
+
+/* 
+input,
+select {
+  padding: 14px 12px;
+
+  border: none;
+  border-radius: 8px;
+  background-color: var(--main-white);
+} */
+
+input:focus,
+input:active,
+input:focus-visible {
+  outline: none;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--main-white);
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Basic Media Rules */
+
+@media (max-width: 800px) {
+  .container {
+    padding: 0 40px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 550px) {
+  .container {
+    padding: 0 28px;
+  }
+
+  input,
+  select {
+    padding: 8px 8px;
+    max-width: 494px;
+  }
+}
+
+/* Visible Class */
+
+.visible {
+  display: block;
+}
+
+/* Title */
+
+.title {
+  font-size: var(--fs-very-big);
+  font-weight: var(--w-regular);
+}
+
+/* Button */
+
+.button {
+  border: 1px solid;
+  border-color: inherit;
+  border-radius: 1000px;
+
+  background-color: transparent;
+  color: inherit;
+
+  font-size: var(--fs-medium);
+  font-weight: var(--w-regular);
+}
+
+.button a {
+  display: block;
+  padding: 14px 20px;
+}
+
+.button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/* Scrollup Button */
+
+.scrollup-button {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+
+  border: none;
+  z-index: 2;
+}
+
+.scrollup-button__image {
+  width: 20px;
+
+  opacity: 70%;
+}
+</style>

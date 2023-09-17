@@ -85,6 +85,11 @@ const routes = [
   { path: "/request", component: "RequestPage", isDarkMode: true },
 ];
 
+const colors = {
+  default: '#fff',
+  darkMode: '#262424'
+};
+
 function fetchCars() {
   return Promise.resolve(carsData).then(result => result);
 }
@@ -101,4 +106,8 @@ function fetchRoutes() {
   return routes;
 }
 
-export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes };
+function fetchColors() {
+  return colors;
+}
+
+export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes, fetchColors };

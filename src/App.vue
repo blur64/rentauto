@@ -35,7 +35,7 @@ import CarSelectPage from "@/pages/CarSelectPage.vue";
 import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
-import { fetchRoutes } from "./api";
+import { fetchRoutes, fetchColors } from "./api";
 
 export default {
   components: {
@@ -51,6 +51,7 @@ export default {
       currentPath: "",
       routes: [],
       darkModePaths: [],
+      backgroundColors: {},
     };
   },
 
@@ -72,6 +73,7 @@ export default {
 
   created() {
     this.routes = fetchRoutes();
+    this.backgroundColors = fetchColors();
 
     this.darkModePaths = this.routes
       .filter((r) => r.isDarkMode)
@@ -85,9 +87,9 @@ export default {
   watch: {
     isDarkMode(newValue) {
       if (newValue === true) {
-        document.body.style.backgroundColor = "#262424";
+        document.body.style.backgroundColor = this.backgroundColors.darkMode;
       } else {
-        document.body.style.backgroundColor = "";
+        document.body.style.backgroundColor = this.backgroundColors.default;
       }
     },
   },

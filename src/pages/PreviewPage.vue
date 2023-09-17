@@ -31,7 +31,7 @@
               <span class="contacts__phone__secondary-text">Круглосуточно</span>
             </div>
           </div>
-          <button class="button" @click="pushPath('/car')">
+          <button class="button" @click="$router.pushPath('/car')">
             <a>Выбрать автомобиль</a>
           </button>
         </div>
@@ -40,20 +40,6 @@
     </div>
   </section>
 </template>
-
-<script>
-// [] pushPath in pushPath
-
-import { pushPath } from "@/routing.js";
-
-export default {
-  methods: {
-    pushPath(path) {
-      pushPath(path);
-    },
-  },
-};
-</script>
 
 <style>
 /* PreviewSection */

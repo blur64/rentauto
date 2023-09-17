@@ -34,7 +34,7 @@
             <a
               class="gallery__car-selection-link"
               href="#request-section__id"
-              @click="pushPath('/request')"
+              @click="$router.pushPath('/request')"
               >Арендовать</a
             >
           </button>
@@ -123,7 +123,7 @@
 </template>
 
 <script>
-// [] pushPath in pushPath
+// [x] pushPath in pushPath
 // [] fix slider UI when window resized
 // [x] rename increaseCurrentCarIndex and decreaseCurrentCarIndex methods names to
 // showNextCar and showPrevCar
@@ -133,7 +133,6 @@
 
 import { updateStore } from "@/store.js";
 import { fetchCars } from "@/api.js";
-import { pushPath } from "@/routing.js";
 
 export default {
   data() {
@@ -178,10 +177,6 @@ export default {
 
     selectCar() {
       updateStore("car", this.currentCar.name);
-    },
-
-    pushPath(path) {
-      pushPath(path);
     },
 
     calculateOneSliderShift() {

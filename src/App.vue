@@ -10,7 +10,7 @@
 // main.js, VInput.vue, VSelect.vue, CarSelectPage.vue, api.js,
 
 // [x] rename components following best vue practices
-// [] add routing.js as a plugin to Vue or find out another way
+// [x] add routing.js as a plugin to Vue or find out another way
 // to not call pushPath method in pushPath method
 // [] think about moving isDarkMode flag to store
 // [] check correctness of BEM using

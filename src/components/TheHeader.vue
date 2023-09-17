@@ -27,7 +27,7 @@
                 :class="{
                   navigation__link__active: currentPath === '/',
                 }"
-                @click="pushPath('/')"
+                @click="$router.pushPath('/')"
                 >Главная</a
               >
             </li>
@@ -35,7 +35,7 @@
               <a
                 class="navigation__link"
                 :class="{ navigation__link__active: currentPath === '/car' }"
-                @click="pushPath('/car')"
+                @click="$router.pushPath('/car')"
                 >Автомобили</a
               >
             </li>
@@ -45,7 +45,7 @@
                 :class="{
                   navigation__link__active: currentPath === '/request',
                 }"
-                @click="pushPath('/request')"
+                @click="$router.pushPath('/request')"
                 >Форма заявки</a
               >
             </li>
@@ -53,7 +53,7 @@
               <a
                 class="navigation__link"
                 :class="{ navigation__link__active: currentPath === '/about' }"
-                @click="pushPath('/about')"
+                @click="$router.pushPath('/about')"
                 >О нас</a
               >
             </li>
@@ -65,11 +65,8 @@
 </template>
 
 <script>
-// [] pushPath in pushPath
+// [x] pushPath in pushPath
 // [] think how to remove hardcoded path names from the template
-//
-
-import { pushPath } from "@/routing.js";
 
 export default {
   props: {
@@ -82,12 +79,6 @@ export default {
       type: String,
       required: true,
       default: "/",
-    },
-  },
-
-  methods: {
-    pushPath(path) {
-      pushPath(path);
     },
   },
 };

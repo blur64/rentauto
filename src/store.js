@@ -1,3 +1,6 @@
+// [] Think about another way for TheForm.vue to get carName from store.
+// Maybe try localStorage to store carName in
+
 const store = {
   car: {
     value: "",
@@ -15,4 +18,8 @@ function updateStore(storeItemName, newStoreItemValue) {
   storeItem.handlers.forEach(handler => handler(storeItem.value));
 }
 
-export { subscribeToUpdate, updateStore };
+function getItemFromStore(storeItemName) {
+  return store[storeItemName].value;
+}
+
+export { updateStore, getItemFromStore, subscribeToUpdate };

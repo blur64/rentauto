@@ -1,17 +1,12 @@
 <template>
-  <header
-    :class="{
-      light_mode: !isDarkMode,
-      dark_mode: isDarkMode,
-    }"
-  >
+  <header class="header" :class="{ dark_mode: isDarkModeGlobal.state }">
     <div class="container">
       <div class="header__wrapper">
-        <div class="logo" @click="pushPath('/')">
+        <div class="logo" @click="$router.pushPath('/')">
           <img
             :src="
               require(`@/assets/imgs/${
-                isDarkMode ? 'logo_white.png' : 'logo.png'
+                isDarkModeGlobal.state ? 'logo_white.png' : 'logo.png'
               }`)
             "
             alt="Logo"
@@ -68,18 +63,21 @@
 // [x] pushPath in pushPath
 // [] think how to remove hardcoded path names from the template
 
+import { isDarkModeGlobal } from "../reactiveStore.js";
+
 export default {
   props: {
-    isDarkMode: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     currentPath: {
       type: String,
       required: true,
       default: "/",
     },
+  },
+
+  data() {
+    return {
+      isDarkModeGlobal,
+    };
   },
 };
 </script>
@@ -87,26 +85,21 @@ export default {
 <style>
 /* Header */
 
-.dark_mode {
-  background-color: var(--main-black);
-  color: var(--main-white);
+.header {
+  color: inherit;
 }
 
-.light_mode {
-  color: var(--main-black);
-}
-
-.dark_mode::after,
-.light_mode::after {
+.header::after {
   content: " ";
   display: block;
   width: 100%;
   height: 1px;
   opacity: 15%;
+  background-color: var(--main-black);
 }
 
-.light_mode::after {
-  background-color: var(--main-black);
+.dark_mode {
+  color: var(--main-white);
 }
 
 .dark_mode::after {

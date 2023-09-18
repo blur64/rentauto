@@ -1,6 +1,6 @@
 <template>
   <div class="main__wrapper">
-    <the-header :isDarkMode="isDarkMode" :currentPath="currentPath" />
+    <the-header :currentPath="currentPath" />
     <component :is="currentRoute.component"></component>
   </div>
 </template>
@@ -12,20 +12,21 @@
 // [x] rename components following best vue practices
 // [x] add routing.js as a plugin to Vue or find out another way
 // to not call pushPath method in pushPath method
-// [] think about moving isDarkMode flag to store
+// [x] think about moving isDarkMode flag to store
 // [] check correctness of BEM using
 // [] think about class names in template
 // [] think about fetch requests in api (maybe it will be better to
 // delete all data requests because this data is very small and it
 // just can be loaded together with .js files)
 // [] think about moving of fetchCarsNames function to App.vue
+// ? [] Add dark theme switcher feature
 
 // [x] move routes from data() attribute to api.js
 // [x] add to every routes item isDarkMode property
 // [x] change logic with darkMode using the isDarkMode property
 // [x] delete currentMainComponent, add currentRoute computed
 // instead, in :is use currentRoute.component
-// [] resolve how to not pass :isDarkMode prop to Header.vue component
+// [x] resolve how to not pass :isDarkMode prop to Header.vue component
 // [x] add changeLocation method
 // [x] make sure location.pathname is safe to use
 
@@ -36,6 +37,7 @@ import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
 import { fetchRoutes, fetchColors } from "./api";
+import { isDarkModeGlobal } from "./reactiveStore.js";
 
 export default {
   components: {
@@ -52,6 +54,7 @@ export default {
       routes: [],
       darkModePaths: [],
       backgroundColors: {},
+      isDarkModeGlobal,
     };
   },
 
@@ -88,8 +91,10 @@ export default {
     isDarkMode(newValue) {
       if (newValue === true) {
         document.body.style.backgroundColor = this.backgroundColors.darkMode;
+        isDarkModeGlobal.state = true;
       } else {
         document.body.style.backgroundColor = this.backgroundColors.default;
+        isDarkModeGlobal.state = false;
       }
     },
   },
@@ -161,18 +166,8 @@ ul {
 
 a {
   text-decoration: none;
-  color: var(--main-black);
+  /* color: var(--main-black); */
 }
-
-/* 
-input,
-select {
-  padding: 14px 12px;
-
-  border: none;
-  border-radius: 8px;
-  background-color: var(--main-white);
-} */
 
 input:focus,
 input:active,
@@ -191,6 +186,7 @@ html {
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--main-white);
+  color: var(--main-black);
 }
 
 .container {
@@ -255,23 +251,5 @@ body {
 .button:hover {
   cursor: pointer;
   opacity: 0.5;
-}
-
-/* Scrollup Button */
-
-.scrollup-button {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-
-  border: none;
-  z-index: 2;
-}
-
-.scrollup-button__image {
-  width: 20px;
-
-  opacity: 70%;
 }
 </style>

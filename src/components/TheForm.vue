@@ -112,6 +112,8 @@
 </template>
 
 <script>
+// [] Add ids to cars
+
 import BaseInput from "@/components/BaseInput.vue";
 import BaseSelect from "@/components/BaseSelect.vue";
 

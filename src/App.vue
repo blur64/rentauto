@@ -1,6 +1,6 @@
 <template>
   <div class="main__wrapper">
-    <the-header :currentPath="currentPath" />
+    <the-header :navigationData="navigationData" :currentPath="currentPath" />
     <component :is="currentRoute.component"></component>
   </div>
 </template>
@@ -9,16 +9,18 @@
 // checked: App.vue, AboutUsPage.vue, VPreview.vue, TheHeader.vue,
 // main.js, VInput.vue, VSelect.vue, CarSelectPage.vue, api.js,
 
+// prepared:
+
 // [x] rename components following best vue practices
 // [x] add routing.js as a plugin to Vue or find out another way
 // to not call pushPath method in pushPath method
 // [x] think about moving isDarkMode flag to store
 // [] check correctness of BEM using
 // [] think about class names in template
-// [] think about fetch requests in api (maybe it will be better to
+// [x] think about fetch requests in api (maybe it will be better to
 // delete all data requests because this data is very small and it
 // just can be loaded together with .js files)
-// [] think about moving of fetchCarsNames function to App.vue
+// [x] think about moving of fetchCarsNames function to App.vue
 // ? [] Add dark theme switcher feature
 
 // [x] move routes from data() attribute to api.js
@@ -54,6 +56,7 @@ export default {
       routes: [],
       darkModePaths: [],
       backgroundColors: {},
+      navigationData: [],
       isDarkModeGlobal,
     };
   },
@@ -76,6 +79,10 @@ export default {
 
   created() {
     this.routes = fetchRoutes();
+    this.navigationData = this.routes.map((r) => ({
+      path: r.path,
+      title: r.title,
+    }));
     this.backgroundColors = fetchColors();
 
     this.darkModePaths = this.routes

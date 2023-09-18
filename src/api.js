@@ -79,10 +79,10 @@ const formData = {
 };
 
 const routes = [
-  { path: "/", component: "PreviewPage", isDarkMode: false },
-  { path: "/about", component: "AboutUsPage", isDarkMode: false },
-  { path: "/car", component: "CarSelectPage", isDarkMode: true },
-  { path: "/request", component: "RequestPage", isDarkMode: true },
+  { path: "/", component: "PreviewPage", isDarkMode: false, title: "Главная" },
+  { path: "/car", component: "CarSelectPage", isDarkMode: true, title: "Автомабили" },
+  { path: "/request", component: "RequestPage", isDarkMode: true, title: "Форма заявки" },
+  { path: "/about", component: "AboutUsPage", isDarkMode: false, title: "О нас" },
 ];
 
 const colors = {

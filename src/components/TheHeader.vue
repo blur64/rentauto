@@ -16,40 +16,14 @@
         </div>
         <nav>
           <ul class="navigation">
-            <li>
+            <li v-for="(navDataItem, idx) of navigationData" :key="idx">
               <a
                 class="navigation__link"
                 :class="{
-                  navigation__link__active: currentPath === '/',
+                  navigation__link__active: currentPath === navDataItem.path,
                 }"
-                @click="$router.pushPath('/')"
-                >Главная</a
-              >
-            </li>
-            <li>
-              <a
-                class="navigation__link"
-                :class="{ navigation__link__active: currentPath === '/car' }"
-                @click="$router.pushPath('/car')"
-                >Автомобили</a
-              >
-            </li>
-            <li>
-              <a
-                class="navigation__link"
-                :class="{
-                  navigation__link__active: currentPath === '/request',
-                }"
-                @click="$router.pushPath('/request')"
-                >Форма заявки</a
-              >
-            </li>
-            <li>
-              <a
-                class="navigation__link"
-                :class="{ navigation__link__active: currentPath === '/about' }"
-                @click="$router.pushPath('/about')"
-                >О нас</a
+                @click="$router.pushPath(navDataItem.path)"
+                >{{ navDataItem.title }}</a
               >
             </li>
           </ul>
@@ -61,7 +35,7 @@
 
 <script>
 // [x] pushPath in pushPath
-// [] think how to remove hardcoded path names from the template
+// [x] think how to remove hardcoded path names from the template
 
 import { isDarkModeGlobal } from "../reactiveStore.js";
 
@@ -71,6 +45,11 @@ export default {
       type: String,
       required: true,
       default: "/",
+    },
+    navigationData: {
+      type: Array,
+      required: false,
+      default: () => [],
     },
   },
 

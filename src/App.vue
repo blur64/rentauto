@@ -15,8 +15,8 @@
 // [x] add routing.js as a plugin to Vue or find out another way
 // to not call pushPath method in pushPath method
 // [x] think about moving isDarkMode flag to store
-// [] check correctness of BEM using
-// [] think about class names in template
+// [-] check correctness of BEM using
+// [-] think about class names in template
 // [x] think about fetch requests in api (maybe it will be better to
 // delete all data requests because this data is very small and it
 // just can be loaded together with .js files)

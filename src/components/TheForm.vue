@@ -240,18 +240,26 @@ export default {
   },
 
   created() {
-    fetchAddresses().then((addresses) => {
+    fetchAddresses()
+      .then((addresses) => {
       this.addresses = addresses;
       this.gettingAddress = this.addresses[0];
       this.returningAddress = this.addresses[0];
     });
 
-    fetchCarsNames().then((carsNames) => {
+    fetchCarsNames()
+      .then((carsNames) => {
       this.carsNames = carsNames;
       this.carName = globalState.selectedCarName
         ? globalState.selectedCarName
         : this.carsNames[0];
     });
+  },
+
+  watch: {
+    carName(newValue) {
+      globalState.selectedCarName = newValue;
+    },
   },
 };
 </script>

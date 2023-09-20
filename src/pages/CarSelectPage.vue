@@ -31,10 +31,7 @@
             @click="selectCar"
             class="button gallery__car-selection-button"
           >
-            <a
-              class="gallery__car-selection-link"
-              href="#request-section__id"
-              @click="$router.pushPath('/request')"
+            <a class="gallery__car-selection-link" href="#request-section__id"
               >Арендовать</a
             >
           </button>
@@ -127,12 +124,13 @@
 // [] fix slider UI when window resized
 // [x] rename increaseCurrentCarIndex and decreaseCurrentCarIndex methods names to
 // showNextCar and showPrevCar
-// [] cahnge pagination template
+// [-] cahnge pagination template
 // [x] rename currentCarInfo to currentCar
 // [x] rename calculateOneShiftCount
 
-import { updateStore } from "@/store.js";
+// import { updateStore } from "@/store.js";
 import { fetchCars } from "@/api.js";
+import globalState from "../globalState.js";
 
 export default {
   data() {
@@ -149,6 +147,8 @@ export default {
       // shifts in pixels
       currentSliderShift: 0,
       oneSliderShift: 0,
+
+      globalState,
     };
   },
 
@@ -176,7 +176,8 @@ export default {
     },
 
     selectCar() {
-      updateStore("car", this.currentCar.name);
+      globalState.selectedCarName = this.currentCar.name;
+      this.$router.pushPath("/request");
     },
 
     calculateOneSliderShift() {

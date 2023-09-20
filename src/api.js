@@ -1,6 +1,5 @@
 const carsData = [
   {
-    id: 1,
     name: "Mazda RX 8",
     cost: 10000,
     pledge: 20000,
@@ -22,7 +21,6 @@ const carsData = [
   },
 
   {
-    id: 2,
     name: "Mercedes Benz E300",
     cost: 15000,
     pledge: 23000,
@@ -45,7 +43,6 @@ const carsData = [
   },
 
   {
-    id: 3,
     name: "BMW X5",
     cost: 12000,
     pledge: 21000,
@@ -91,15 +88,19 @@ const colors = {
 };
 
 function fetchCars() {
-  return Promise.resolve(carsData).then(result => result);
+  return Promise.resolve(carsData)
+    .then(result => result);
 }
 
 function fetchAddresses() {
-  return Promise.resolve(formData.addresses).then(result => result);
+  return Promise.resolve(formData.addresses)
+    .then(result => result);
 }
 
 function fetchCarsNames() {
-  return Promise.resolve(carsData.map((carData) => carData.name)).then(result => result);
+  return Promise.resolve(carsData
+    .map((carData) => carData.name))
+    .then(result => result);
 }
 
 function fetchRoutes() {

@@ -1,12 +1,12 @@
 <template>
-  <header class="header" :class="{ dark_mode: isDarkModeGlobal.state }">
+  <header class="header" :class="{ dark_mode: globalState.isDarkMode }">
     <div class="container">
       <div class="header__wrapper">
         <div class="logo" @click="$router.pushPath('/')">
           <img
             :src="
               require(`@/assets/imgs/${
-                isDarkModeGlobal.state ? 'logo_white.png' : 'logo.png'
+                globalState.isDarkMode ? 'logo_white.png' : 'logo.png'
               }`)
             "
             alt="Logo"
@@ -37,7 +37,7 @@
 // [x] pushPath in pushPath
 // [x] think how to remove hardcoded path names from the template
 
-import { isDarkModeGlobal } from "../reactiveStore.js";
+import globalState from "../globalState.js";
 
 export default {
   props: {
@@ -55,7 +55,7 @@ export default {
 
   data() {
     return {
-      isDarkModeGlobal,
+      globalState,
     };
   },
 };

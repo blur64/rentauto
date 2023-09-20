@@ -112,12 +112,8 @@
 </template>
 
 <script>
-// [] Add ids to cars
-
 import BaseInput from "@/components/BaseInput.vue";
 import BaseSelect from "@/components/BaseSelect.vue";
-
-import { subscribeToUpdate } from "@/store.js";
 
 import { useVuelidate } from "@vuelidate/core";
 import { helpers } from "@vuelidate/validators";
@@ -125,6 +121,7 @@ import { required, minLength, numeric } from "@vuelidate/validators";
 import { onlyLetters, minDate } from "@/validators.js";
 
 import { fetchCarsNames, fetchAddresses } from "@/api.js";
+import globalState from "@/globalState";
 
 export default {
   components: {
@@ -251,11 +248,9 @@ export default {
 
     fetchCarsNames().then((carsNames) => {
       this.carsNames = carsNames;
-      this.carName = this.carsNames[0];
-    });
-
-    subscribeToUpdate("car", (newValue) => {
-      this.carName = newValue;
+      this.carName = globalState.selectedCarName
+        ? globalState.selectedCarName
+        : this.carsNames[0];
     });
   },
 };

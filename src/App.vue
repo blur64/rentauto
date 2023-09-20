@@ -22,6 +22,7 @@
 // just can be loaded together with .js files)
 // [x] think about moving of fetchCarsNames function to App.vue
 // ? [] Add dark theme switcher feature
+// [] fix adaptivity
 
 // [x] move routes from data() attribute to api.js
 // [x] add to every routes item isDarkMode property
@@ -39,7 +40,7 @@ import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
 import { fetchRoutes, fetchColors } from "./api";
-import { isDarkModeGlobal } from "./reactiveStore.js";
+import globalState from "./globalState.js";
 
 export default {
   components: {
@@ -57,7 +58,6 @@ export default {
       darkModePaths: [],
       backgroundColors: {},
       navigationData: [],
-      isDarkModeGlobal,
     };
   },
 
@@ -98,11 +98,11 @@ export default {
     isDarkMode(newValue) {
       if (newValue === true) {
         document.body.style.backgroundColor = this.backgroundColors.darkMode;
-        isDarkModeGlobal.state = true;
       } else {
         document.body.style.backgroundColor = this.backgroundColors.default;
-        isDarkModeGlobal.state = false;
       }
+
+      globalState.toggleDarkMode();
     },
   },
 };

@@ -31,9 +31,13 @@
               <span class="contacts__phone__secondary-text">Круглосуточно</span>
             </div>
           </div>
-          <button class="button" @click="$router.pushPath('/car')">
+          <base-button
+            :title="'Выбрать автомобиль'"
+            @clicked="$router.pushPath('/car')"
+          />
+          <!-- <button class="button" @click="$router.pushPath('/car')">
             <a>Выбрать автомобиль</a>
-          </button>
+          </button> -->
         </div>
         <div class="preview__img-wrapper"></div>
       </div>
@@ -41,12 +45,18 @@
   </section>
 </template>
 
+<script>
+import BaseButton from "../components/BaseButton.vue";
+
+export default {
+  components: {
+    BaseButton,
+  },
+};
+</script>
+
 <style>
 /* PreviewSection */
-
-.preview-section {
-  color: var(--main-black);
-}
 
 .preview__wrapper {
   display: flex;

@@ -81,8 +81,6 @@
 
 .advantages-section {
   padding-top: 36px;
-
-  color: var(--main-black);
 }
 
 .advantages__title {

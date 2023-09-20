@@ -77,7 +77,7 @@ const formData = {
 
 const routes = [
   { path: "/", component: "PreviewPage", isDarkMode: false, title: "Главная" },
-  { path: "/car", component: "CarSelectPage", isDarkMode: true, title: "Автомабили" },
+  { path: "/car", component: "CarSelectPage", isDarkMode: true, title: "Автомобили" },
   { path: "/request", component: "RequestPage", isDarkMode: true, title: "Форма заявки" },
   { path: "/about", component: "AboutUsPage", isDarkMode: false, title: "О нас" },
 ];

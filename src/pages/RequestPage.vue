@@ -19,8 +19,5 @@ export default {
 
 .request-section {
   padding-top: 36px;
-
-  background-color: var(--main-black);
-  color: var(--main-white);
 }
 </style>

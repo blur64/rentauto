@@ -4,7 +4,10 @@
       class="form__input"
       v-bind="$attrs"
       :value="modelValue"
-      :class="{ 'request__form__error-input': !isValid }"
+      :class="{
+        'request__form__error-input': !isValid,
+        'form__input_dark-mode': !globalState.isDarkMode,
+      }"
       @input="$emit('update:modelValue', $event.target.value)"
     />
     <ol v-if="errorMessages.length" class="request__form__error-message">
@@ -16,6 +19,8 @@
 </template>
 
 <script>
+import globalState from "@/globalState.js";
+
 export default {
   props: {
     isValid: {
@@ -33,6 +38,12 @@ export default {
       required: false,
     },
   },
+
+  data() {
+    return {
+      globalState,
+    };
+  },
 };
 </script>
 
@@ -43,6 +54,11 @@ export default {
   border: none;
   border-radius: 8px;
   background-color: var(--main-white);
+}
+
+.form__input_dark-mode,
+.form__input_dark-mode:focus {
+  outline: 1px solid var(--main-black);
 }
 
 .request__form__error-input {
@@ -61,5 +77,8 @@ export default {
   overflow-y: auto;
   color: var(--error);
   font-size: var(--fs-very-small);
+}
+
+.form__input_dark-mode {
 }
 </style>

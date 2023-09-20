@@ -89,13 +89,12 @@
             type="tel"
           />
         </div>
-        <button
+        <base-button
           :disabled="!isFormValid"
+          :title="'Отправить'"
           type="submit"
-          class="button request__form__request-button"
-        >
-          <a class="request__form__request-button__link">Отправить</a>
-        </button>
+          class="request__form__request-button"
+        />
       </div>
     </section>
 
@@ -114,6 +113,7 @@
 <script>
 import BaseInput from "@/components/BaseInput.vue";
 import BaseSelect from "@/components/BaseSelect.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 import { useVuelidate } from "@vuelidate/core";
 import { helpers } from "@vuelidate/validators";
@@ -127,6 +127,7 @@ export default {
   components: {
     BaseInput,
     BaseSelect,
+    BaseButton,
   },
 
   setup() {
@@ -240,15 +241,13 @@ export default {
   },
 
   created() {
-    fetchAddresses()
-      .then((addresses) => {
+    fetchAddresses().then((addresses) => {
       this.addresses = addresses;
       this.gettingAddress = this.addresses[0];
       this.returningAddress = this.addresses[0];
     });
 
-    fetchCarsNames()
-      .then((carsNames) => {
+    fetchCarsNames().then((carsNames) => {
       this.carsNames = carsNames;
       this.carName = globalState.selectedCarName
         ? globalState.selectedCarName
@@ -320,10 +319,6 @@ export default {
 .request__form__personal-data-section__name-input:hover,
 .request__form__personal-data-section__phone-input:hover {
   cursor: initial;
-}
-
-.request__form__request-button__link {
-  color: var(--main-white);
 }
 
 .request__form__request-button:disabled:hover,

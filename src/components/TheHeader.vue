@@ -1,5 +1,8 @@
 <template>
-  <header class="header" :class="{ dark_mode: globalState.isDarkMode }">
+  <header
+    class="header"
+    :class="{ 'header__underline_dark-mode': globalState.isDarkMode }"
+  >
     <div class="container">
       <div class="header__wrapper">
         <div class="logo" @click="$router.pushPath('/')">
@@ -34,9 +37,6 @@
 </template>
 
 <script>
-// [x] pushPath in pushPath
-// [x] think how to remove hardcoded path names from the template
-
 import globalState from "../globalState.js";
 
 export default {
@@ -64,10 +64,6 @@ export default {
 <style>
 /* Header */
 
-.header {
-  color: inherit;
-}
-
 .header::after {
   content: " ";
   display: block;
@@ -77,11 +73,7 @@ export default {
   background-color: var(--main-black);
 }
 
-.dark_mode {
-  color: var(--main-white);
-}
-
-.dark_mode::after {
+.header__underline_dark-mode::after {
   background-color: var(--main-white);
 }
 
@@ -132,7 +124,6 @@ export default {
 }
 
 .navigation__link__active {
-  /* border-bottom: 1px solid rgba(249, 219, 61, 0.7); */
   border-bottom: 1px solid var(--secondary);
 }
 

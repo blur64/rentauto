@@ -27,14 +27,11 @@
               </div>
             </div>
           </div>
-          <button
-            @click="selectCar"
-            class="button gallery__car-selection-button"
-          >
-            <a class="gallery__car-selection-link" href="#request-section__id"
-              >Арендовать</a
-            >
-          </button>
+          <base-button
+            @clicked="selectCar"
+            :title="'Арендовать'"
+            class="gallery__car-selection-button"
+          />
         </div>
         <div class="gallery__car-info__characteristics__wrapper">
           <ul class="gallery__car-info__characteristics">
@@ -60,12 +57,15 @@
       <!-- gallery start -->
       <div class="gallery__slider__pre-wrapper">
         <div class="gallery__slider__wrapper">
-          <button
-            class="button gallery__slider__button-left"
-            @click="showPrevCar"
-          >
-            <img src="@/assets/imgs/left_arrow.svg" alt="" />
-          </button>
+          <base-button
+            class="gallery__slider__button-left"
+            @clicked="showPrevCar"
+            :imgSrc="
+              require(globalState.isDarkMode
+                ? '@/assets/imgs/left_arrow.svg'
+                : '@/assets/imgs/left_arrow_dark.svg')
+            "
+          />
           <!-- slider start -->
           <div class="gallery__slider">
             <div
@@ -82,19 +82,26 @@
             </div>
           </div>
           <!-- slider end -->
-          <button
-            class="button gallery__slider__button-right"
-            @click="showNextCar"
-          >
-            <img src="@/assets/imgs/right_arrow.svg" alt="" />
-          </button>
+          <base-button
+            class="gallery__slider__button-right"
+            @clicked="showNextCar"
+            :imgSrc="
+              require(globalState.isDarkMode
+                ? '@/assets/imgs/right_arrow.svg'
+                : '@/assets/imgs/right_arrow_dark.svg')
+            "
+          />
         </div>
         <div class="gallery__slider__pagination__wrapper">
           <div class="gallery__slider__pagination">
             <div
               v-for="(_, idx) in cars"
               :key="idx"
-              :class="{ colored: idx === currentCarIndex }"
+              :class="{
+                colored: idx === currentCarIndex,
+                'gallery__slider__pagination__item_dark-mode':
+                  !globalState.isDarkMode,
+              }"
               @click="currentCarIndex = idx"
               class="gallery__slider__pagination__item"
             ></div>
@@ -120,19 +127,16 @@
 </template>
 
 <script>
-// [x] pushPath in pushPath
-// [] fix slider UI when window resized
-// [x] rename increaseCurrentCarIndex and decreaseCurrentCarIndex methods names to
-// showNextCar and showPrevCar
-// [-] cahnge pagination template
-// [x] rename currentCarInfo to currentCar
-// [x] rename calculateOneShiftCount
+import BaseButton from "../components/BaseButton.vue";
 
-// import { updateStore } from "@/store.js";
 import { fetchCars } from "@/api.js";
 import globalState from "../globalState.js";
 
 export default {
+  components: {
+    BaseButton,
+  },
+
   data() {
     return {
       haveCarsLoaded: false,
@@ -219,9 +223,6 @@ export default {
 .gallery-section {
   position: relative;
   padding-bottom: 80px;
-
-  background-color: var(--main-black);
-  color: var(--main-white);
 }
 
 .gallery__car-info__wrapper {
@@ -373,10 +374,6 @@ export default {
   height: 62px;
 }
 
-.gallery__car-selection-link {
-  color: var(--main-white);
-}
-
 /* GallerySection Slider Pagination */
 
 .gallery__slider__pagination__wrapper {
@@ -395,6 +392,10 @@ export default {
 
   background-color: var(--main-white);
   opacity: 60%;
+}
+
+.gallery__slider__pagination__item_dark-mode {
+  background-color: var(--main-black);
 }
 
 .gallery__slider__pagination__item:hover {

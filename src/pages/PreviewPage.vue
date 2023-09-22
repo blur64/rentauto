@@ -143,12 +143,36 @@ export default {
 
 /* Media Rules */
 
-@media (max-width: 1200px) {
+@media (max-width: 1340px) {
   .preview__img-wrapper {
-    width: 640px;
-    height: 545px;
+    width: 750px;
     top: 102px;
     right: -80px;
+  }
+}
+
+@media (max-width: 1260px) {
+  .preview__img-wrapper {
+    width: 690px;
+    top: 102px;
+    right: -80px;
+  }
+
+  .preview__data {
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .preview__img-wrapper {
+    width: 690px;
+    top: 102px;
+    right: -80px;
+  }
+
+  .preview__data {
+    min-height: 600px;
+    margin: 60px 0;
   }
 }
 

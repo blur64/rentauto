@@ -144,7 +144,6 @@ ul {
 
 a {
   text-decoration: none;
-  /* color: var(--main-black); */
 }
 
 input:focus,
@@ -175,6 +174,30 @@ body {
 
 .main__wrapper {
   min-height: 100vh;
+}
+
+.devided-childs-padding > * {
+  padding: 0 8px 0 8px;
+}
+
+.devided-childs-padding:first-child {
+  padding-left: 0;
+}
+
+.devided-childs-padding:last-child {
+  padding-right: 0;
+}
+
+.devided-childs-margin > * {
+  margin: 0 8px 0 8px;
+}
+
+.devided-childs-margin:first-child {
+  margin-left: 0;
+}
+
+.devided-childs-margin:last-child {
+  margin-right: 0;
 }
 
 /* Basic Media Rules */

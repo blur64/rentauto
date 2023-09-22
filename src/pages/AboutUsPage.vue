@@ -2,7 +2,7 @@
   <section class="advantages-section" id="advantages-section__id">
     <div class="container">
       <h2 class="title advantages__title">Хотите арендовать автомобиль?</h2>
-      <div class="advantages__wrapper">
+      <div class="advantages__wrapper devided-childs-padding">
         <div class="advantages__item">
           <img
             class="advantages__item__image"
@@ -60,7 +60,7 @@
           </p>
         </div>
       </div>
-      <div class="advantages__extra-advantages__wrapper">
+      <div class="advantages__extra-advantages__wrapper devided-childs-margin">
         <div class="advantages__extra-advantages__item">
           <p class="advantages__extra-advantages__item__text">
             Бесплатная подача в аэропорт и на вокзал
@@ -168,6 +168,7 @@
   .advantages__wrapper {
     flex-wrap: wrap;
     padding: 0 40px;
+    justify-content: center;
   }
 
   .advantages__item:first-child,
@@ -175,8 +176,13 @@
     margin-bottom: 40px;
   }
 
+  .advantages__extra-advantages__wrapper {
+    display: block;
+  }
+
   .advantages__extra-advantages__item {
-    width: 340px;
+    width: auto;
+    margin-bottom: 28px !important;
   }
 }
 
@@ -200,7 +206,6 @@
 
   .advantages__extra-advantages__item {
     width: auto;
-    margin-bottom: 28px;
   }
 }
 </style>

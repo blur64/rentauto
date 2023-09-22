@@ -134,17 +134,27 @@ export default {
 
 /* Media Rules */
 
-@media (max-width: 800px) {
-  .logo img {
-    width: 48px;
+@media (max-width: 1000px) {
+  .navigation {
+    width: 440px;
   }
 
-  .logo__text {
-    font-size: var(--fs-medium);
+  .navigation__link {
+    padding: 33px 12px 33px 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo img {
+    width: 38px;
   }
 
   .navigation {
-    width: 450px;
+    width: 420px;
+  }
+
+  .navigation__link {
+    padding: 29px 12px 28px 12px;
   }
 }
 
@@ -154,6 +164,10 @@ export default {
     flex-direction: column;
     align-items: flex-end;
     width: auto;
+  }
+
+  .logo__text {
+    font-size: var(--fs-small);
   }
 
   .navigation__link {

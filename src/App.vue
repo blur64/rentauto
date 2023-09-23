@@ -1,5 +1,8 @@
 <template>
-  <div class="main__wrapper" :class="{ dark_mode: globalState.isDarkMode }">
+  <div
+    class="main__wrapper"
+    :class="{ 'dark-mode__for-layout': globalState.isDarkMode }"
+  >
     <the-header :navigationData="navigationData" :currentPath="currentPath" />
     <main class="main">
       <component :is="currentRoute.component"></component>
@@ -86,6 +89,7 @@ export default {
   --main-white: #fafafa;
   --main-black: #262424;
   --main-black-light: rgba(38, 36, 36, 0.15);
+  --main-white-light: rgba(250, 250, 250, 0.15);
   --secondary: #d0af38;
   --error: #da0000;
 
@@ -237,8 +241,14 @@ body {
 
 /* Dark mode */
 
-.dark_mode {
+.dark-mode__for-layout {
   background-color: var(--main-black);
   color: var(--main-white);
+}
+
+.dark-mode__for-items,
+.dark-mode__for-items::after,
+.dark-mode__for-items::before {
+  background-color: var(--main-white);
 }
 </style>

@@ -65,7 +65,4 @@ export default {
   cursor: pointer;
   opacity: 0.5;
 }
-
-.button_dark-mode {
-}
 </style>

@@ -2,7 +2,7 @@
   <header
     class="header"
     :class="{
-      'header__dark-mode': globalState.isDarkMode,
+      'dark-mode__for-layout': globalState.isDarkMode,
     }"
   >
     <div class="container">
@@ -26,12 +26,18 @@
           >
             <div
               class="burder-menu__body"
-              :class="{ 'burger-rotate': isBurgerMenuOpened }"
+              :class="{
+                'burger-rotate': isBurgerMenuOpened,
+                'dark-mode__for-items': globalState.isDarkMode,
+              }"
             ></div>
           </div>
           <ul
             class="navigation"
-            :class="{ 'navigation__side-opened': isBurgerMenuOpened }"
+            :class="{
+              'navigation__side-opened': isBurgerMenuOpened,
+              'dark-mode__for-layout': globalState.isDarkMode,
+            }"
           >
             <li v-for="(navDataItem, idx) of navigationData" :key="idx">
               <a
@@ -82,23 +88,11 @@ export default {
 
 .header {
   background-color: var(--main-white);
+  border-bottom: 1px solid var(--main-black-light);
 }
 
-.header::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  opacity: 15%;
-  background-color: var(--main-black);
-}
-
-.header__dark-mode::after {
-  background-color: var(--main-white);
-}
-
-.header__dark-mode {
-  background-color: var(--main-black);
+.header.dark-mode__for-layout {
+  border-bottom-color: var(--main-white-light);
 }
 
 .header__content-wrapper {
@@ -155,6 +149,8 @@ export default {
   transition: color 0.4s;
 }
 
+/* Burger Big Mack */
+
 .burger-menu {
   cursor: pointer;
   padding: 16px 10px;
@@ -192,7 +188,7 @@ export default {
 }
 
 .burger-rotate {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .burger-rotate::after {
@@ -245,7 +241,7 @@ export default {
   .navigation {
     display: block;
     position: fixed;
-    top: 86px;
+    top: 87px;
     right: 0;
     height: calc(100% - 86px);
     background-color: var(--main-white);
@@ -253,6 +249,10 @@ export default {
     transition: transform 0.5s ease-out;
     border-left: 1px solid var(--main-black-light);
     width: 300px;
+  }
+
+  .navigation.dark-mode__for-layout {
+    border-left: 1px solid var(--main-white-light);
   }
 
   .navigation__side-opened {

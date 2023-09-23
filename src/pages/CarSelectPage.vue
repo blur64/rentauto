@@ -99,8 +99,7 @@
               :key="idx"
               :class="{
                 colored: idx === currentCarIndex,
-                'gallery__slider__pagination__item_dark-mode':
-                  !globalState.isDarkMode,
+                'dark-mode__for-items': globalState.isDarkMode,
               }"
               @click="currentCarIndex = idx"
               class="gallery__slider__pagination__item"
@@ -390,13 +389,13 @@ export default {
   border-radius: 100%;
   margin: 0 8px;
 
-  background-color: var(--main-white);
+  background-color: var(--main-black);
   opacity: 60%;
 }
 
-.gallery__slider__pagination__item_dark-mode {
+/* .gallery__slider__pagination__item_dark-mode {
   background-color: var(--main-black);
-}
+} */
 
 .gallery__slider__pagination__item:hover {
   cursor: pointer;
@@ -404,7 +403,7 @@ export default {
 }
 
 .colored {
-  background-color: var(--secondary);
+  background-color: var(--secondary) !important;
   opacity: 100%;
 }
 

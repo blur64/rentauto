@@ -35,9 +35,6 @@
             :title="'Выбрать автомобиль'"
             @clicked="$router.pushPath('/car')"
           />
-          <!-- <button class="button" @click="$router.pushPath('/car')">
-            <a>Выбрать автомобиль</a>
-          </button> -->
         </div>
         <div class="preview__img-wrapper"></div>
       </div>
@@ -85,7 +82,7 @@ export default {
 
   background-image: url("@/assets/imgs/preview_img.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .preview__title {
@@ -143,9 +140,10 @@ export default {
 
 /* Media Rules */
 
-@media (max-width: 1340px) {
+@media (max-width: 1380px) {
   .preview__img-wrapper {
-    width: 750px;
+    height: 640px;
+    width: 730px;
     top: 102px;
     right: -80px;
   }
@@ -153,7 +151,7 @@ export default {
 
 @media (max-width: 1260px) {
   .preview__img-wrapper {
-    width: 690px;
+    width: 680px;
     top: 102px;
     right: -80px;
   }
@@ -164,28 +162,50 @@ export default {
 }
 
 @media (max-width: 1200px) {
-  .preview__img-wrapper {
-    width: 690px;
-    top: 102px;
-    right: -80px;
-  }
-
   .preview__data {
     min-height: 600px;
     margin: 60px 0;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1130px) {
   .preview__img-wrapper {
     width: 640px;
-    height: 545px;
     top: 102px;
-    right: -392px;
+    right: -80px;
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 1080px) {
+  .preview__img-wrapper {
+    width: 520px;
+    top: 102px;
+    right: -80px;
+  }
+}
+
+@media (max-width: 958px) {
+  .preview__img-wrapper {
+    width: 380px;
+    top: 102px;
+    right: -80px;
+  }
+}
+
+@media (max-width: 800px) {
+  .preview__img-wrapper {
+    width: 380px;
+    height: 585px;
+    top: 102px;
+    right: -90px;
+  }
+}
+
+@media (max-width: 740px) {
+  .preview__img-wrapper {
+    display: none;
+  }
+
   .preview__img-wrapper {
     display: none;
   }

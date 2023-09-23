@@ -1,10 +1,12 @@
 <template>
   <header
     class="header"
-    :class="{ 'header__underline_dark-mode': globalState.isDarkMode }"
+    :class="{
+      'header__dark-mode': globalState.isDarkMode,
+    }"
   >
     <div class="container">
-      <div class="header__wrapper">
+      <div class="header__content-wrapper">
         <div class="logo" @click="$router.pushPath('/')">
           <img
             :src="
@@ -17,8 +19,20 @@
           />
           <div class="logo__text">RentAvto SPB</div>
         </div>
-        <nav>
-          <ul class="navigation">
+        <nav class="navigation__wrapper">
+          <div
+            class="burger-menu"
+            @click="isBurgerMenuOpened = !isBurgerMenuOpened"
+          >
+            <div
+              class="burder-menu__body"
+              :class="{ 'burger-rotate': isBurgerMenuOpened }"
+            ></div>
+          </div>
+          <ul
+            class="navigation"
+            :class="{ 'navigation__side-opened': isBurgerMenuOpened }"
+          >
             <li v-for="(navDataItem, idx) of navigationData" :key="idx">
               <a
                 class="navigation__link"
@@ -55,6 +69,8 @@ export default {
 
   data() {
     return {
+      isBurgerMenuOpened: false,
+
       globalState,
     };
   },
@@ -64,8 +80,12 @@ export default {
 <style>
 /* Header */
 
+.header {
+  background-color: var(--main-white);
+}
+
 .header::after {
-  content: " ";
+  content: "";
   display: block;
   width: 100%;
   height: 1px;
@@ -73,15 +93,19 @@ export default {
   background-color: var(--main-black);
 }
 
-.header__underline_dark-mode::after {
+.header__dark-mode::after {
   background-color: var(--main-white);
 }
 
-.header__wrapper {
+.header__dark-mode {
+  background-color: var(--main-black);
+}
+
+.header__content-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: 24px 0 24px 0;
   align-items: center;
+  height: 86px;
 }
 
 /* Header Logo */
@@ -98,7 +122,6 @@ export default {
 
 .logo__text {
   margin-left: 12px;
-  /* margin-bottom: 8px; */
 
   font-size: var(--fs-medium);
   font-weight: var(--w-bold);
@@ -132,6 +155,56 @@ export default {
   transition: color 0.4s;
 }
 
+.burger-menu {
+  cursor: pointer;
+  padding: 16px 10px;
+  display: none;
+}
+
+.burder-menu__body {
+  width: 34px;
+  height: 4px;
+  background-color: var(--main-black);
+  border-radius: 8px;
+  transition: background-color 0.45s;
+}
+
+.burder-menu__body::after,
+.burder-menu__body::before {
+  content: "";
+  display: block;
+  position: relative;
+  width: 34px;
+  height: 4px;
+  background-color: var(--main-black);
+  border-radius: 8px;
+  transition: transform 0.5s;
+}
+
+.burder-menu__body::after {
+  top: 6px;
+  transform-origin: top left;
+}
+
+.burder-menu__body::before {
+  top: -10px;
+  transform-origin: bottom left;
+}
+
+.burger-rotate {
+  background-color: transparent;
+}
+
+.burger-rotate::after {
+  background-color: var(--main-black);
+  transform: rotate(-35deg);
+}
+
+.burger-rotate::before {
+  background-color: var(--main-black);
+  transform: rotate(35deg);
+}
+
 /* Media Rules */
 
 @media (max-width: 1000px) {
@@ -158,22 +231,49 @@ export default {
   }
 }
 
+@media (max-width: 748px) {
+  .header {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+  }
+
+  .burger-menu {
+    display: block;
+  }
+
+  .navigation {
+    display: block;
+    position: fixed;
+    top: 86px;
+    right: 0;
+    height: calc(100% - 86px);
+    background-color: var(--main-white);
+    transform: translateX(100%);
+    transition: transform 0.5s ease-out;
+    border-left: 1px solid var(--main-black-light);
+    width: 300px;
+  }
+
+  .navigation__side-opened {
+    transform: translateX(0%);
+  }
+
+  .navigation__link {
+    font-size: var(--fs-small);
+    text-align: center;
+    display: block;
+    padding: 16px;
+  }
+}
+
 @media (max-width: 550px) {
   .navigation {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: auto;
+    width: 100%;
   }
 
   .logo__text {
     font-size: var(--fs-small);
-  }
-
-  .navigation__link {
-    display: block;
-    padding: 4px;
-    margin-bottom: 4px;
   }
 }
 </style>

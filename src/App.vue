@@ -85,6 +85,7 @@ export default {
 :root {
   --main-white: #fafafa;
   --main-black: #262424;
+  --main-black-light: rgba(38, 36, 36, 0.15);
   --secondary: #d0af38;
   --error: #da0000;
 

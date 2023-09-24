@@ -80,6 +80,12 @@ export default {
       globalState,
     };
   },
+
+  watch: {
+    currentPath() {
+      this.isBurgerMenuOpened = false;
+    },
+  },
 };
 </script>
 

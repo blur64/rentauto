@@ -70,7 +70,7 @@
           <div class="gallery__slider">
             <div
               class="gallery__slider__images__wrapper"
-              :style="{ right: `${currentSliderShift}px` }"
+              :style="{ translate: `${currentSliderShift}px 0` }"
               ref="slider"
             >
               <img
@@ -193,7 +193,7 @@ export default {
   watch: {
     currentCarIndex(current, prev) {
       const shiftFactor = current - prev;
-      this.currentSliderShift += this.oneSliderShift * shiftFactor;
+      this.currentSliderShift -= this.oneSliderShift * shiftFactor;
     },
   },
 
@@ -353,13 +353,10 @@ export default {
 }
 
 .gallery__slider__images__wrapper {
-  position: relative;
   display: flex;
   align-items: center;
-  right: 0;
-
   height: 488px;
-  transition: right 1s;
+  transition: translate 1s;
 }
 
 .gallery__slider__images__item {

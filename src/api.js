@@ -99,7 +99,7 @@ function fetchAddresses() {
 
 function fetchCarsNames() {
   return Promise.resolve(carsData
-    .map((carData) => carData.name))
+    .map(carData => carData.name))
     .then(result => result);
 }
 

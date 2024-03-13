@@ -13,9 +13,6 @@ const globalState = {
   },
 
   set selectedCarName(newName) {
-    // if (typeof(newName) !== 'string' || ) {
-    //   throw new Error('incorrect newName');
-    // }
     this._selectedCarName = newName;
   },
 

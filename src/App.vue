@@ -53,7 +53,9 @@ export default {
 
   methods: {
     changeLocation() {
-      this.currentPath = location.pathname;
+      const path = location.pathname;
+      const res = path.substring(path.lastIndexOf("/"));
+      this.currentPath = res;
     },
   },
 

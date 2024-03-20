@@ -1,10 +1,15 @@
 <template>
   <select
     class="form__select"
-    :class="{ 'form__select_dark-mode': !globalState.isDarkMode }"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
   >
+    <!-- <select
+    class="form__select"
+    :class="{ 'form__select_dark-mode': !globalState.isDarkMode }"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  > -->
     <option v-for="(option, idx) of options" :key="idx" :value="option">
       {{ option }}
     </option>
@@ -12,7 +17,7 @@
 </template>
 
 <script>
-import globalState from "../globalState.js";
+// import globalState from "../globalState.js";
 
 export default {
   props: {
@@ -27,11 +32,11 @@ export default {
     },
   },
 
-  data() {
-    return {
-      globalState,
-    };
-  },
+  // data() {
+  //   return {
+  //     globalState,
+  //   };
+  // },
 };
 </script>
 

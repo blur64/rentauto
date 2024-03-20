@@ -1,14 +1,20 @@
 <template>
-  <header
+  <header class="header">
+    <!-- <header
     class="header"
     :class="{
       'dark-mode__for-layout': globalState.isDarkMode,
     }"
-  >
+  > -->
     <div class="container">
       <div class="header__content-wrapper">
         <div class="logo" @click="$router.pushPath('/')">
           <img
+            :src="require(`@/assets/imgs/logo_white.png`)"
+            alt="Logo"
+            class="logo__img"
+          />
+          <!-- <img
             :src="
               require(`@/assets/imgs/${
                 globalState.isDarkMode ? 'logo_white.png' : 'logo.png'
@@ -16,7 +22,7 @@
             "
             alt="Logo"
             class="logo__img"
-          />
+          /> -->
           <div class="logo__text">RentAvto SPB</div>
         </div>
         <nav class="navigation__wrapper">
@@ -26,19 +32,27 @@
           >
             <div
               class="burder-menu__body"
+              :class="{ 'burger-rotate': isBurgerMenuOpened }"
+            ></div>
+            <!-- <div
+              class="burder-menu__body"
               :class="{
                 'burger-rotate': isBurgerMenuOpened,
                 'dark-mode__for-items': globalState.isDarkMode,
               }"
-            ></div>
+            ></div> -->
           </div>
           <ul
+            class="navigation"
+            :class="{ 'navigation__side-opened': isBurgerMenuOpened }"
+          >
+            <!-- <ul
             class="navigation"
             :class="{
               'navigation__side-opened': isBurgerMenuOpened,
               'dark-mode__for-layout': globalState.isDarkMode,
             }"
-          >
+          > -->
             <li v-for="(navDataItem, idx) of navigationData" :key="idx">
               <a
                 class="navigation__link"
@@ -57,7 +71,7 @@
 </template>
 
 <script>
-import globalState from "../globalState.js";
+// import globalState from "../globalState.js";
 
 export default {
   props: {
@@ -77,7 +91,7 @@ export default {
     return {
       isBurgerMenuOpened: false,
 
-      globalState,
+      // globalState,
     };
   },
 

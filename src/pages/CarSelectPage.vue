@@ -60,12 +60,17 @@
           <base-button
             class="gallery__slider__button-left"
             @clicked="showPrevCar"
+            :imgSrc="require('@/assets/imgs/left_arrow.svg')"
+          />
+          <!-- <base-button
+            class="gallery__slider__button-left"
+            @clicked="showPrevCar"
             :imgSrc="
               require(globalState.isDarkMode
                 ? '@/assets/imgs/left_arrow.svg'
                 : '@/assets/imgs/left_arrow_dark.svg')
             "
-          />
+          /> -->
           <!-- slider start -->
           <div class="gallery__slider">
             <div
@@ -85,12 +90,17 @@
           <base-button
             class="gallery__slider__button-right"
             @clicked="showNextCar"
+            :imgSrc="require('@/assets/imgs/right_arrow.svg')"
+          />
+          <!-- <base-button
+            class="gallery__slider__button-right"
+            @clicked="showNextCar"
             :imgSrc="
               require(globalState.isDarkMode
                 ? '@/assets/imgs/right_arrow.svg'
                 : '@/assets/imgs/right_arrow_dark.svg')
             "
-          />
+          /> -->
         </div>
         <div class="gallery__slider__pagination__wrapper">
           <div class="gallery__slider__pagination">
@@ -99,11 +109,21 @@
               :key="idx"
               :class="{
                 colored: idx === currentCarIndex,
-                'dark-mode__for-items': globalState.isDarkMode,
+                'dark-mode__for-items': true,
               }"
               @click="currentCarIndex = idx"
               class="gallery__slider__pagination__item"
             ></div>
+            <!-- <div
+              v-for="(_, idx) in cars"
+              :key="idx"
+              :class="{
+                colored: idx === currentCarIndex,
+                'dark-mode__for-items': globalState.isDarkMode,
+              }"
+              @click="currentCarIndex = idx"
+              class="gallery__slider__pagination__item"
+            ></div> -->
           </div>
         </div>
       </div>

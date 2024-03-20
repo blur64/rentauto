@@ -4,12 +4,19 @@
       class="form__input"
       v-bind="$attrs"
       :value="modelValue"
+      :class="{ 'request__form__error-input': !isValid }"
+      @input="$emit('update:modelValue', $event.target.value)"
+    />
+    <!-- <input
+      class="form__input"
+      v-bind="$attrs"
+      :value="modelValue"
       :class="{
         'request__form__error-input': !isValid,
         'form__input_dark-mode': !globalState.isDarkMode,
       }"
       @input="$emit('update:modelValue', $event.target.value)"
-    />
+    /> -->
     <ol v-if="errorMessages.length" class="request__form__error-message">
       <li v-for="(errorMessage, idx) of errorMessages" :key="idx">
         {{ errorMessage }}
@@ -19,7 +26,7 @@
 </template>
 
 <script>
-import globalState from "@/globalState.js";
+// import globalState from "@/globalState.js";
 
 export default {
   props: {
@@ -39,11 +46,11 @@ export default {
     },
   },
 
-  data() {
-    return {
-      globalState,
-    };
-  },
+  // data() {
+  //   return {
+  //     globalState,
+  //   };
+  // },
 };
 </script>
 

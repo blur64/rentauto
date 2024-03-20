@@ -1,8 +1,9 @@
 <template>
-  <div
+  <div class="main__wrapper" :data-theme="isDarkMode ? 'dark' : 'light'">
+    <!-- <div
     class="main__wrapper"
     :class="{ 'dark-mode__for-layout': globalState.isDarkMode }"
-  >
+  > -->
     <the-header :navigationData="navigationData" :currentPath="currentPath" />
     <main class="main">
       <component :is="currentRoute.component"></component>
@@ -17,7 +18,7 @@ import CarSelectPage from "@/pages/CarSelectPage.vue";
 import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
-import { fetchRoutes, fetchColors } from "./api";
+import { fetchRoutes } from "./api";
 import globalState from "./globalState.js";
 
 export default {
@@ -33,8 +34,8 @@ export default {
     return {
       currentPath: "",
       routes: [],
-      darkModePaths: [],
-      backgroundColors: {},
+      // darkModePaths: [],
+      // backgroundColors: {},
       navigationData: [],
 
       globalState,
@@ -46,16 +47,18 @@ export default {
       return this.routes.find((route) => route.path === this.currentPath);
     },
 
-    isDarkModeOn() {
-      return this.darkModePaths.includes(this.currentPath);
+    // isDarkModeOn() {
+    //   return this.darkModePaths.includes(this.currentPath);
+    // },
+    isDarkMode() {
+      return this.currentRoute.isDarkMode;
     },
   },
 
   methods: {
     changeLocation() {
       const path = location.pathname;
-      const res = path.substring(path.lastIndexOf("/"));
-      this.currentPath = res;
+      this.currentPath = path.substring(path.lastIndexOf("/"));
     },
   },
 
@@ -65,21 +68,20 @@ export default {
       path: r.path,
       title: r.title,
     }));
-    this.backgroundColors = fetchColors();
+    // this.backgroundColors = fetchColors();
 
-    this.darkModePaths = this.routes
-      .filter((r) => r.isDarkMode)
-      .map((r) => r.path);
+    // this.darkModePaths = this.routes
+    //   .filter((r) => r.isDarkMode)
+    //   .map((r) => r.path);
 
     this.changeLocation();
-
     window.addEventListener("popstate", this.changeLocation);
   },
 
   watch: {
-    isDarkModeOn() {
-      globalState.toggleDarkMode();
-    },
+    // isDarkModeOn() {
+    //   globalState.toggleDarkMode();
+    // },
   },
 };
 </script>
@@ -243,7 +245,7 @@ body {
 
 /* Dark mode */
 
-.dark-mode__for-layout {
+/* .dark-mode__for-layout {
   background-color: var(--main-black);
   color: var(--main-white);
 }
@@ -252,5 +254,5 @@ body {
 .dark-mode__for-items::after,
 .dark-mode__for-items::before {
   background-color: var(--main-white);
-}
+} */
 </style>

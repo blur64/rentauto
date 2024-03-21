@@ -89,7 +89,7 @@ export default {
 <style>
 /* Project Variables */
 
-:root {
+/* :root {
   --main-white: #fafafa;
   --main-black: #262424;
   --main-black-light: rgba(38, 36, 36, 0.15);
@@ -107,6 +107,30 @@ export default {
   --w-regular: 400;
   --w-medium: 500;
   --w-bold: 700;
+} */
+
+:root {
+  --border-secondary: rgba(38, 36, 36, 0.15);
+
+  --main-white: #fafafa;
+  --main-black: #262424;
+  --secondary: #d0af38;
+  --error: #da0000;
+
+  --fs-very-big: 32px;
+  --fs-big: 24px;
+  --fs-medium: 20px;
+  --fs-small: 16px;
+  --fs-very-small: 14px;
+
+  --w-light: 300;
+  --w-regular: 400;
+  --w-medium: 500;
+  --w-bold: 700;
+}
+
+[data-theme="dark"] {
+  --border-secondary: rgba(250, 250, 250, 0.15);
 }
 
 /* Project Fonts */

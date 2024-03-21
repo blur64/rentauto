@@ -108,7 +108,7 @@ export default {
 
 .header {
   background-color: var(--main-white);
-  border-bottom: 1px solid var(--main-black-light);
+  border-bottom: 1px solid var(--border-secondary);
 }
 
 .header.dark-mode__for-layout {
@@ -267,7 +267,7 @@ export default {
     background-color: var(--main-white);
     transform: translateX(100%);
     transition: transform 0.5s ease-out;
-    border-left: 1px solid var(--main-black-light);
+    border-left: 1px solid var(--border-secondary);
     width: 300px;
   }
 

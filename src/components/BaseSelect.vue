@@ -47,9 +47,6 @@ export default {
   border: none;
   border-radius: 8px;
   background-color: var(--background-primary-inverse);
-}
-
-.form__select_dark-mode {
-  outline: 1px solid var(--main-black);
+  color: var(--text-primary-inverse);
 }
 </style>

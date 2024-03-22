@@ -61,11 +61,7 @@ export default {
   border: none;
   border-radius: 8px;
   background-color: var(--background-primary-inverse);
-}
-
-.form__input_dark-mode,
-.form__input_dark-mode:focus {
-  outline: 1px solid var(--main-black);
+  color: var(--text-primary-inverse);
 }
 
 .request__form__error-input {
@@ -84,8 +80,5 @@ export default {
   overflow-y: auto;
   color: var(--error);
   font-size: var(--fs-very-small);
-}
-
-.form__input_dark-mode {
 }
 </style>

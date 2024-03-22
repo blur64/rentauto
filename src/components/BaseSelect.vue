@@ -46,7 +46,7 @@ export default {
 
   border: none;
   border-radius: 8px;
-  background-color: var(--background-primary);
+  background-color: var(--background-primary-inverse);
 }
 
 .form__select_dark-mode {

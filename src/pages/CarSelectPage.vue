@@ -406,7 +406,7 @@ export default {
   border-radius: 100%;
   margin: 0 8px;
 
-  background-color: var(--main-black);
+  background-color: var(--background-primary-inverse);
   opacity: 60%;
 }
 

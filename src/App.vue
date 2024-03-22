@@ -51,6 +51,9 @@ export default {
     //   return this.darkModePaths.includes(this.currentPath);
     // },
     isDarkMode() {
+      if (!this.currentRoute) {
+        return;
+      }
       return this.currentRoute.isDarkMode;
     },
   },
@@ -79,9 +82,12 @@ export default {
   },
 
   watch: {
-    // isDarkModeOn() {
-    //   globalState.toggleDarkMode();
-    // },
+    isDarkMode() {
+      document.documentElement.setAttribute(
+        "data-theme",
+        this.isDarkMode ? "dark" : "light"
+      );
+    },
   },
 };
 </script>
@@ -111,6 +117,8 @@ export default {
 
 :root {
   --border-secondary: rgba(38, 36, 36, 0.15);
+  --background-primary: #fafafa;
+  --background-primary-inverse: #262424;
 
   --main-white: #fafafa;
   --main-black: #262424;
@@ -131,6 +139,8 @@ export default {
 
 [data-theme="dark"] {
   --border-secondary: rgba(250, 250, 250, 0.15);
+  --background-primary: #262424;
+  --background-primary-inverse: #fafafa;
 }
 
 /* Project Fonts */
@@ -195,7 +205,7 @@ html {
 
 body {
   font-family: "Inter", sans-serif;
-  background-color: var(--main-white);
+  background-color: var(--background-primary);
   color: var(--main-black);
 }
 

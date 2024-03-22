@@ -107,7 +107,7 @@ export default {
 /* Header */
 
 .header {
-  background-color: var(--main-white);
+  /* background-color: var(--background-primary); */
   border-bottom: 1px solid var(--border-secondary);
 }
 
@@ -180,7 +180,7 @@ export default {
 .burder-menu__body {
   width: 34px;
   height: 4px;
-  background-color: var(--main-black);
+  /* background-color: var(--background-primary); */
   border-radius: 8px;
   transition: background-color 0.45s;
 }
@@ -192,7 +192,7 @@ export default {
   position: relative;
   width: 34px;
   height: 4px;
-  background-color: var(--main-black);
+  background-color: var(--background-primary);
   border-radius: 8px;
   transition: transform 0.5s;
 }
@@ -212,12 +212,12 @@ export default {
 }
 
 .burger-rotate::after {
-  background-color: var(--main-black);
+  background-color: var(--background-primary);
   transform: rotate(-35deg);
 }
 
 .burger-rotate::before {
-  background-color: var(--main-black);
+  background-color: var(--background-primary);
   transform: rotate(35deg);
 }
 
@@ -264,7 +264,7 @@ export default {
     top: 87px;
     right: 0;
     height: calc(100% - 86px);
-    background-color: var(--main-white);
+    background-color: var(--background-primary);
     transform: translateX(100%);
     transition: transform 0.5s ease-out;
     border-left: 1px solid var(--border-secondary);

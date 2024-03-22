@@ -121,9 +121,6 @@ export default {
   --background-primary-inverse: #262424;
   --text-primary: #262424;
   --text-primary-inverse: #fafafa;
-
-  --main-white: #fafafa;
-  --main-black: #262424;
   --secondary: #d0af38;
   --error: #da0000;
 

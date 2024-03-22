@@ -141,7 +141,7 @@
 .advantages__extra-advantages__item__text {
   font-size: var(--fs-very-big);
   font-weight: var(--w-medium);
-  color: var(--main-white);
+  color: var(--text-primary-inverse);
 }
 
 .advantages__extra-advantages__item:first-child,

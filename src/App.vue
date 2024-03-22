@@ -119,6 +119,8 @@ export default {
   --border-secondary: rgba(38, 36, 36, 0.15);
   --background-primary: #fafafa;
   --background-primary-inverse: #262424;
+  --text-primary: #262424;
+  --text-primary-inverse: #fafafa;
 
   --main-white: #fafafa;
   --main-black: #262424;
@@ -141,6 +143,8 @@ export default {
   --border-secondary: rgba(250, 250, 250, 0.15);
   --background-primary: #262424;
   --background-primary-inverse: #fafafa;
+  --text-primary: #fafafa;
+  --text-primary-inverse: #262424;
 }
 
 /* Project Fonts */
@@ -206,7 +210,7 @@ html {
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--background-primary);
-  color: var(--main-black);
+  color: var(--text-primary);
 }
 
 .container {

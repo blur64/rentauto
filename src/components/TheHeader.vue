@@ -1,11 +1,5 @@
 <template>
   <header class="header">
-    <!-- <header
-    class="header"
-    :class="{
-      'dark-mode__for-layout': globalState.isDarkMode,
-    }"
-  > -->
     <div class="container">
       <div class="header__content-wrapper">
         <div class="logo" @click="$router.pushPath('/')">
@@ -14,15 +8,6 @@
             alt="Logo"
             class="logo__img"
           />
-          <!-- <img
-            :src="
-              require(`@/assets/imgs/${
-                globalState.isDarkMode ? 'logo_white.png' : 'logo.png'
-              }`)
-            "
-            alt="Logo"
-            class="logo__img"
-          /> -->
           <div class="logo__text">RentAvto SPB</div>
         </div>
         <nav class="navigation__wrapper">
@@ -34,25 +19,11 @@
               class="burder-menu__body"
               :class="{ 'burger-rotate': isBurgerMenuOpened }"
             ></div>
-            <!-- <div
-              class="burder-menu__body"
-              :class="{
-                'burger-rotate': isBurgerMenuOpened,
-                'dark-mode__for-items': globalState.isDarkMode,
-              }"
-            ></div> -->
           </div>
           <ul
             class="navigation"
             :class="{ 'navigation__side-opened': isBurgerMenuOpened }"
           >
-            <!-- <ul
-            class="navigation"
-            :class="{
-              'navigation__side-opened': isBurgerMenuOpened,
-              'dark-mode__for-layout': globalState.isDarkMode,
-            }"
-          > -->
             <li v-for="(navDataItem, idx) of navigationData" :key="idx">
               <a
                 class="navigation__link"
@@ -71,8 +42,6 @@
 </template>
 
 <script>
-// import globalState from "../globalState.js";
-
 export default {
   props: {
     currentPath: {
@@ -90,8 +59,6 @@ export default {
   data() {
     return {
       isBurgerMenuOpened: false,
-
-      // globalState,
     };
   },
 
@@ -107,7 +74,6 @@ export default {
 /* Header */
 
 .header {
-  /* background-color: var(--background-primary); */
   border-bottom: 1px solid var(--border-secondary);
 }
 
@@ -180,7 +146,7 @@ export default {
 .burder-menu__body {
   width: 34px;
   height: 4px;
-  /* background-color: var(--background-primary); */
+  background-color: var(--background-primary-inverse);
   border-radius: 8px;
   transition: background-color 0.45s;
 }
@@ -192,7 +158,7 @@ export default {
   position: relative;
   width: 34px;
   height: 4px;
-  background-color: var(--background-primary);
+  background-color: var(--background-primary-inverse);
   border-radius: 8px;
   transition: transform 0.5s;
 }
@@ -212,12 +178,12 @@ export default {
 }
 
 .burger-rotate::after {
-  background-color: var(--background-primary);
+  background-color: var(--background-primary-inverse);
   transform: rotate(-35deg);
 }
 
 .burger-rotate::before {
-  background-color: var(--background-primary);
+  background-color: var(--background-primary-inverse);
   transform: rotate(35deg);
 }
 

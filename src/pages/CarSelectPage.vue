@@ -62,15 +62,6 @@
             @clicked="showPrevCar"
             :imgSrc="require('@/assets/imgs/left_arrow.svg')"
           />
-          <!-- <base-button
-            class="gallery__slider__button-left"
-            @clicked="showPrevCar"
-            :imgSrc="
-              require(globalState.isDarkMode
-                ? '@/assets/imgs/left_arrow.svg'
-                : '@/assets/imgs/left_arrow_dark.svg')
-            "
-          /> -->
           <!-- slider start -->
           <div class="gallery__slider">
             <div
@@ -92,15 +83,6 @@
             @clicked="showNextCar"
             :imgSrc="require('@/assets/imgs/right_arrow.svg')"
           />
-          <!-- <base-button
-            class="gallery__slider__button-right"
-            @clicked="showNextCar"
-            :imgSrc="
-              require(globalState.isDarkMode
-                ? '@/assets/imgs/right_arrow.svg'
-                : '@/assets/imgs/right_arrow_dark.svg')
-            "
-          /> -->
         </div>
         <div class="gallery__slider__pagination__wrapper">
           <div class="gallery__slider__pagination">
@@ -114,16 +96,6 @@
               @click="currentCarIndex = idx"
               class="gallery__slider__pagination__item"
             ></div>
-            <!-- <div
-              v-for="(_, idx) in cars"
-              :key="idx"
-              :class="{
-                colored: idx === currentCarIndex,
-                'dark-mode__for-items': globalState.isDarkMode,
-              }"
-              @click="currentCarIndex = idx"
-              class="gallery__slider__pagination__item"
-            ></div> -->
           </div>
         </div>
       </div>
@@ -367,7 +339,6 @@ export default {
 
 .gallery__slider {
   width: 980px;
-  /* height: 580px; */
   height: 488px;
   overflow: hidden;
 }
@@ -381,7 +352,6 @@ export default {
 
 .gallery__slider__images__item {
   width: 980px;
-  /* object-fit: contain; */
 }
 
 .gallery__slider__button-left,
@@ -409,10 +379,6 @@ export default {
   background-color: var(--background-primary-inverse);
   opacity: 60%;
 }
-
-/* .gallery__slider__pagination__item_dark-mode {
-  background-color: var(--main-black);
-} */
 
 .gallery__slider__pagination__item:hover {
   cursor: pointer;

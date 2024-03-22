@@ -1,9 +1,5 @@
 <template>
   <div class="main__wrapper" :data-theme="isDarkMode ? 'dark' : 'light'">
-    <!-- <div
-    class="main__wrapper"
-    :class="{ 'dark-mode__for-layout': globalState.isDarkMode }"
-  > -->
     <the-header :navigationData="navigationData" :currentPath="currentPath" />
     <main class="main">
       <component :is="currentRoute.component"></component>
@@ -94,26 +90,6 @@ export default {
 
 <style>
 /* Project Variables */
-
-/* :root {
-  --main-white: #fafafa;
-  --main-black: #262424;
-  --main-black-light: rgba(38, 36, 36, 0.15);
-  --main-white-light: rgba(250, 250, 250, 0.15);
-  --secondary: #d0af38;
-  --error: #da0000;
-
-  --fs-very-big: 32px;
-  --fs-big: 24px;
-  --fs-medium: 20px;
-  --fs-small: 16px;
-  --fs-very-small: 14px;
-
-  --w-light: 300;
-  --w-regular: 400;
-  --w-medium: 500;
-  --w-bold: 700;
-} */
 
 :root {
   --border-secondary: rgba(38, 36, 36, 0.15);
@@ -277,17 +253,4 @@ body {
   font-size: var(--fs-very-big);
   font-weight: var(--w-regular);
 }
-
-/* Dark mode */
-
-/* .dark-mode__for-layout {
-  background-color: var(--main-black);
-  color: var(--main-white);
-}
-
-.dark-mode__for-items,
-.dark-mode__for-items::after,
-.dark-mode__for-items::before {
-  background-color: var(--main-white);
-} */
 </style>

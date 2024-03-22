@@ -5,21 +5,12 @@
     v-bind="$attrs"
     @click="$emit('clicked')"
   >
-    <!-- <button
-    class="button"
-    :class="{ 'button_dark-mode': globalState.isDarkMode }"
-    :disabled="isDisabled"
-    v-bind="$attrs"
-    @click="$emit('clicked')"
-  > -->
     <a v-if="title">{{ title }}</a>
     <img v-if="imgSrc" :src="imgSrc" />
   </button>
 </template>
 
 <script>
-// import globalState from "../globalState.js";
-
 export default {
   emits: {
     clicked: null,
@@ -40,12 +31,6 @@ export default {
       default: false,
     },
   },
-
-  // data() {
-  //   return {
-  //     globalState,
-  //   };
-  // },
 };
 </script>
 

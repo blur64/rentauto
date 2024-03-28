@@ -14,7 +14,7 @@ import CarSelectPage from "@/pages/CarSelectPage.vue";
 import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
-import { fetchRoutes } from "./api";
+import { routes } from "./api.js";
 import globalState from "./globalState.js";
 
 export default {
@@ -29,15 +29,13 @@ export default {
   data() {
     return {
       currentPath: "",
-      routes: [],
-
       globalState,
     };
   },
 
   computed: {
     currentRoute() {
-      return this.routes.find((route) => route.path === this.currentPath);
+      return routes.find((route) => route.path === this.currentPath);
     },
 
     isDarkMode() {
@@ -53,7 +51,6 @@ export default {
   },
 
   created() {
-    this.routes = fetchRoutes();
     this.changeLocation();
     window.addEventListener("popstate", this.changeLocation);
   },

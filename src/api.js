@@ -103,10 +103,6 @@ function fetchCarsNames() {
     .then(result => result);
 }
 
-function fetchRoutes() {
-  return routes;
-}
-
 function fetchColors() {
   return colors;
 }
@@ -116,4 +112,4 @@ const navigationData = routes.map((r) => ({
   title: r.title,
 }));
 
-export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes, fetchColors, navigationData };
+export { fetchCars, fetchAddresses, fetchCarsNames, fetchColors, navigationData, routes };

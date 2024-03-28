@@ -20,7 +20,10 @@
             class="navigation"
             :class="{ 'navigation__side-opened': isBurgerMenuOpened }"
           >
-            <li v-for="(navDataItem, idx) of navigationData" :key="idx">
+            <li
+              v-for="(navDataItem, idx) of require('../api').navigationData"
+              :key="idx"
+            >
               <a
                 class="navigation__link"
                 :class="{
@@ -44,11 +47,6 @@ export default {
       type: String,
       required: true,
       default: "/",
-    },
-    navigationData: {
-      type: Array,
-      required: false,
-      default: () => [],
     },
   },
 

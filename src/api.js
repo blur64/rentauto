@@ -111,4 +111,9 @@ function fetchColors() {
   return colors;
 }
 
-export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes, fetchColors };
+const navigationData = routes.map((r) => ({
+  path: r.path,
+  title: r.title,
+}));
+
+export { fetchCars, fetchAddresses, fetchCarsNames, fetchRoutes, fetchColors, navigationData };

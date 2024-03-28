@@ -1,6 +1,6 @@
 <template>
   <div class="main__wrapper">
-    <the-header :navigationData="navigationData" :currentPath="currentPath" />
+    <the-header :currentPath="currentPath" />
     <main class="main">
       <component :is="currentRoute.component"></component>
     </main>
@@ -30,7 +30,6 @@ export default {
     return {
       currentPath: "",
       routes: [],
-      navigationData: [],
 
       globalState,
     };
@@ -55,11 +54,6 @@ export default {
 
   created() {
     this.routes = fetchRoutes();
-    this.navigationData = this.routes.map((r) => ({
-      path: r.path,
-      title: r.title,
-    }));
-
     this.changeLocation();
     window.addEventListener("popstate", this.changeLocation);
   },

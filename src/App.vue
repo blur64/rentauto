@@ -86,6 +86,7 @@ export default {
   --text-primary-inverse: #fafafa;
   --secondary: #d0af38;
   --error: #da0000;
+  --shadow: #262424;
 
   --fs-very-big: 32px;
   --fs-big: 24px;

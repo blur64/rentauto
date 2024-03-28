@@ -325,7 +325,7 @@ export default {
   top: 0;
   left: 0;
 
-  background-color: var(--main-black);
+  background-color: var(--shadow);
   opacity: 90%;
 }
 

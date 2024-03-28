@@ -88,6 +88,8 @@ export default {
   --error: #da0000;
   --shadow: #262424;
 
+  color-scheme: light;
+
   --fs-very-big: 32px;
   --fs-big: 24px;
   --fs-medium: 20px;
@@ -106,6 +108,8 @@ export default {
   --background-primary-inverse: #fafafa;
   --text-primary: #fafafa;
   --text-primary-inverse: #262424;
+
+  color-scheme: dark;
 }
 
 /* Project Fonts */

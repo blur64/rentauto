@@ -78,10 +78,6 @@ export default {
   background-color: var(--background-primary);
 }
 
-.header.dark-mode__for-layout {
-  border-bottom-color: var(--main-white-light);
-}
-
 .header__content-wrapper {
   display: flex;
   justify-content: space-between;
@@ -236,10 +232,6 @@ export default {
     transition: transform 0.5s ease-out;
     border-left: 1px solid var(--border-secondary);
     width: 300px;
-  }
-
-  .navigation.dark-mode__for-layout {
-    border-left: 1px solid var(--main-white-light);
   }
 
   .navigation__side-opened {

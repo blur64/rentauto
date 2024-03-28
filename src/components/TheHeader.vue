@@ -3,11 +3,7 @@
     <div class="container">
       <div class="header__content-wrapper">
         <div class="logo" @click="$router.pushPath('/')">
-          <img
-            :src="require(`@/assets/imgs/logo_white.png`)"
-            alt="Logo"
-            class="logo__img"
-          />
+          <div class="logo__img-container"></div>
           <div class="logo__text">RentAvto SPB</div>
         </div>
         <nav class="navigation__wrapper">
@@ -93,8 +89,11 @@ export default {
   cursor: pointer;
 }
 
-.logo__img {
+.logo__img-container {
   width: 48px;
+  height: 38px;
+  background-image: var(--logo-img-url);
+  background-size: contain;
 }
 
 .logo__text {

@@ -100,6 +100,8 @@ export default {
   --w-regular: 400;
   --w-medium: 500;
   --w-bold: 700;
+
+  --logo-img-url: url("@/assets/imgs/logo.png");
 }
 
 [data-theme="dark"] {
@@ -110,6 +112,8 @@ export default {
   --text-primary-inverse: #262424;
 
   color-scheme: dark;
+
+  --logo-img-url: url("@/assets/imgs/logo_white.png");
 }
 
 /* Project Fonts */

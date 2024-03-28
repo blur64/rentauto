@@ -120,8 +120,12 @@ import { helpers } from "@vuelidate/validators";
 import { required, minLength, numeric } from "@vuelidate/validators";
 import { onlyLetters, minDate } from "@/validators.js";
 
-import { fetchCarsNames, fetchAddresses } from "@/api.js";
-import globalState from "@/globalState";
+import {
+  fetchCarsNames,
+  fetchAddresses,
+  getCurrentCar,
+  setCurrentCar,
+} from "@/api.js";
 
 export default {
   components: {
@@ -249,15 +253,13 @@ export default {
 
     fetchCarsNames().then((carsNames) => {
       this.carsNames = carsNames;
-      this.carName = globalState.selectedCarName
-        ? globalState.selectedCarName
-        : this.carsNames[0];
+      this.carName = getCurrentCar() ?? this.carsNames[0];
     });
   },
 
   watch: {
     carName(newValue) {
-      globalState.selectedCarName = newValue;
+      setCurrentCar(newValue);
     },
   },
 };

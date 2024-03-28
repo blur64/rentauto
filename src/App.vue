@@ -15,7 +15,6 @@ import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
 import { routes } from "./api.js";
-import globalState from "./globalState.js";
 
 export default {
   components: {
@@ -29,7 +28,6 @@ export default {
   data() {
     return {
       currentPath: "",
-      globalState,
     };
   },
 

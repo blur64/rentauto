@@ -119,9 +119,7 @@
 
 <script>
 import BaseButton from "../components/BaseButton.vue";
-
-import { fetchCars } from "@/api.js";
-import globalState from "../globalState.js";
+import { fetchCars, setCurrentCar } from "@/api.js";
 
 export default {
   components: {
@@ -142,8 +140,6 @@ export default {
       // shifts in pixels
       currentSliderShift: 0,
       oneSliderShift: 0,
-
-      globalState,
     };
   },
 
@@ -171,7 +167,7 @@ export default {
     },
 
     selectCar() {
-      globalState.selectedCarName = this.currentCar.name;
+      setCurrentCar(this.currentCar.name);
       this.$router.pushPath("/request");
     },
 

@@ -82,6 +82,11 @@ const routes = [
   { path: "/about", component: "AboutUsPage", isDarkMode: false, title: "О нас" },
 ];
 
+const navigationData = routes.map((r) => ({
+  path: r.path,
+  title: r.title,
+}));
+
 function fetchCars() {
   return Promise.resolve(carsData)
     .then(result => result);
@@ -98,10 +103,22 @@ function fetchCarsNames() {
     .then(result => result);
 }
 
+const CURRENT_CAR_LOCAL_STORAGE_KEY = "rentauto-car";
 
-const navigationData = routes.map((r) => ({
-  path: r.path,
-  title: r.title,
-}));
+function setCurrentCar(carName) {
+  localStorage.setItem(CURRENT_CAR_LOCAL_STORAGE_KEY, carName);
+}
 
-export { fetchCars, fetchAddresses, fetchCarsNames, navigationData, routes };
+function getCurrentCar() {
+  return localStorage.getItem(CURRENT_CAR_LOCAL_STORAGE_KEY);
+}
+
+export {
+  fetchCars,
+  fetchAddresses,
+  fetchCarsNames,
+  navigationData,
+  routes,
+  setCurrentCar,
+  getCurrentCar
+};

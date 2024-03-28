@@ -42,10 +42,7 @@ export default {
     },
 
     isDarkMode() {
-      if (!this.currentRoute) {
-        return;
-      }
-      return this.currentRoute.isDarkMode;
+      return this.currentRoute?.isDarkMode;
     },
   },
 

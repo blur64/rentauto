@@ -82,11 +82,6 @@ const routes = [
   { path: "/about", component: "AboutUsPage", isDarkMode: false, title: "О нас" },
 ];
 
-const colors = {
-  default: '#fff',
-  darkMode: '#262424'
-};
-
 function fetchCars() {
   return Promise.resolve(carsData)
     .then(result => result);
@@ -103,13 +98,10 @@ function fetchCarsNames() {
     .then(result => result);
 }
 
-function fetchColors() {
-  return colors;
-}
 
 const navigationData = routes.map((r) => ({
   path: r.path,
   title: r.title,
 }));
 
-export { fetchCars, fetchAddresses, fetchCarsNames, fetchColors, navigationData, routes };
+export { fetchCars, fetchAddresses, fetchCarsNames, navigationData, routes };

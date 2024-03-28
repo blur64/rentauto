@@ -75,6 +75,7 @@ export default {
 
 .header {
   border-bottom: 1px solid var(--border-secondary);
+  background-color: var(--background-primary);
 }
 
 .header.dark-mode__for-layout {

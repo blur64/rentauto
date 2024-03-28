@@ -1,5 +1,5 @@
 <template>
-  <div class="main__wrapper" :data-theme="isDarkMode ? 'dark' : 'light'">
+  <div class="main__wrapper">
     <the-header :navigationData="navigationData" :currentPath="currentPath" />
     <main class="main">
       <component :is="currentRoute.component"></component>
@@ -30,8 +30,6 @@ export default {
     return {
       currentPath: "",
       routes: [],
-      // darkModePaths: [],
-      // backgroundColors: {},
       navigationData: [],
 
       globalState,
@@ -43,9 +41,6 @@ export default {
       return this.routes.find((route) => route.path === this.currentPath);
     },
 
-    // isDarkModeOn() {
-    //   return this.darkModePaths.includes(this.currentPath);
-    // },
     isDarkMode() {
       if (!this.currentRoute) {
         return;
@@ -67,11 +62,6 @@ export default {
       path: r.path,
       title: r.title,
     }));
-    // this.backgroundColors = fetchColors();
-
-    // this.darkModePaths = this.routes
-    //   .filter((r) => r.isDarkMode)
-    //   .map((r) => r.path);
 
     this.changeLocation();
     window.addEventListener("popstate", this.changeLocation);

@@ -1,9 +1,5 @@
 <template>
-  <section
-    class="gallery-section"
-    id="gallery-section__id"
-    v-if="haveCarsLoaded"
-  >
+  <section class="gallery-section" id="gallery-section__id" v-if="cars.length">
     <div v-if="fullSizeMiniImageSrc" class="gallery__shadow"></div>
     <div class="container">
       <div class="gallery__car-info__wrapper">
@@ -13,16 +9,16 @@
             <div>
               <div class="gallery__car-info__cost__wrapper">
                 от
-                <span class="gallery__car-info__cost">{{
-                  currentCar.cost
-                }}</span>
+                <span class="gallery__car-info__cost">
+                  {{ currentCar.cost }}
+                </span>
                 руб.
               </div>
               <div class="gallery__car-info__pledge__wrapper">
                 Залог
-                <span class="gallery__car-info__pledge">{{
-                  currentCar.pledge
-                }}</span>
+                <span class="gallery__car-info__pledge">
+                  {{ currentCar.pledge }}
+                </span>
                 руб.
               </div>
             </div>
@@ -84,20 +80,17 @@ export default {
   components: { BaseButton, BaseSlider },
   data() {
     return {
-      haveCarsLoaded: false,
       cars: [],
       sliderImgsSrcs: [],
       fullSizeMiniImageSrc: null,
       currentCarIndex: 0,
     };
   },
-
   computed: {
     currentCar() {
       return this.cars[this.currentCarIndex];
     },
   },
-
   methods: {
     selectCar() {
       setCurrentCar(this.currentCar.name);
@@ -107,14 +100,12 @@ export default {
       this.currentCarIndex = index;
     },
   },
-
   mounted() {
     fetchCars().then((cars) => {
       this.cars = cars;
       this.sliderImgsSrcs = cars.map((car) =>
         require(`@/assets/${car.mainImgSrc}`)
       );
-      this.haveCarsLoaded = true;
     });
   },
 };

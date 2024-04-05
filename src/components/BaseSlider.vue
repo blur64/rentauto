@@ -15,7 +15,7 @@
           <img
             v-for="(imgSrc, idx) of imgsSrcs"
             :key="idx"
-            :src="require(imgSrc)"
+            :src="imgSrc"
             class="gallery__slider__images__item"
           />
         </div>
@@ -48,12 +48,20 @@ import BaseButton from "./BaseButton.vue";
 export default {
   name: "BaseSlider",
   components: { BaseButton },
-  emits: [showingImgChanged],
-  props: [imgsSrcs],
+  emits: ["showingImgChanged"],
+  props: {
+    imgsSrcs: {
+      type: Array,
+      validator(value) {
+        return value.every((v) => typeof v === "string");
+      },
+      default: () => [],
+    },
+  },
   data() {
     return {
-      unitOfPixelsShift,
-      currentImgIndex,
+      unitOfPixelsShift: 0,
+      currentImgIndex: 0,
     };
   },
   computed: {

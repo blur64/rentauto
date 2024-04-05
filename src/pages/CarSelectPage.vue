@@ -241,82 +241,12 @@ export default {
   opacity: 90%;
 }
 
-/* GallerySection Slider */
-
-.gallery__slider__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.gallery__slider {
-  width: 980px;
-  height: 488px;
-  overflow: hidden;
-}
-
-.gallery__slider__images__wrapper {
-  display: flex;
-  align-items: center;
-  height: 488px;
-  transition: translate 1s;
-}
-
-.gallery__slider__images__item {
-  width: 980px;
-}
-
-.gallery__slider__button-left,
-.gallery__slider__button-right {
-  width: 62px;
-  height: 62px;
-}
-
-/* GallerySection Slider Pagination */
-
-.gallery__slider__pagination__wrapper {
-  text-align: center;
-}
-
-.gallery__slider__pagination {
-  display: inline-flex;
-}
-
-.gallery__slider__pagination__item {
-  width: 11px;
-  height: 11px;
-  border-radius: 100%;
-  margin: 0 8px;
-
-  background-color: var(--background-primary-inverse);
-  opacity: 60%;
-}
-
-.gallery__slider__pagination__item:hover {
-  cursor: pointer;
-  opacity: 80%;
-}
-
-.colored {
-  background-color: var(--secondary) !important;
-  opacity: 100%;
-}
-
 /* Media Rules */
 
 @media (max-width: 1200px) {
   .gallery__car-info__mini-imgs__item {
     width: 160px;
     height: 130px;
-  }
-
-  .gallery__slider {
-    width: 880px;
-    height: 500px;
-  }
-
-  .gallery__slider__images__item {
-    width: 880px;
   }
 
   .gallery__full-image {
@@ -334,28 +264,6 @@ export default {
 }
 
 @media (max-width: 800px) {
-  .gallery__slider {
-    width: 600px;
-    height: 380px;
-  }
-
-  .gallery__slider__images__item {
-    width: 600px;
-  }
-
-  .gallery__slider__button-left,
-  .gallery__slider__button-right {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 190px;
-  }
-
-  .gallery__slider__button-left img,
-  .gallery__slider__button-right img {
-    width: 22px;
-    height: 22px;
-  }
-
   .gallery__car-selection-button {
     font-size: var(--fs-small);
   }
@@ -405,15 +313,6 @@ export default {
     padding-bottom: 180px;
   }
 
-  .gallery__slider {
-    width: 300px;
-    height: 0;
-  }
-
-  .gallery__slider__images__wrapper {
-    display: none;
-  }
-
   .gallery__car-info__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -439,24 +338,6 @@ export default {
   .gallery__car-info__mini-imgs__item {
     margin: 0;
     width: 156px;
-  }
-
-  .gallery__slider__button-left,
-  .gallery__slider__button-right {
-    margin: 0;
-    z-index: 1;
-  }
-
-  .gallery__slider__pre-wrapper {
-    position: relative;
-    margin-top: 28px;
-  }
-
-  .gallery__slider__pagination__wrapper {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translate(0, -50%);
   }
 
   .gallery__full-image {

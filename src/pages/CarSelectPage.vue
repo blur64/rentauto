@@ -54,52 +54,10 @@
           />
         </div>
       </div>
-      <!-- gallery start -->
-      <div class="gallery__slider__pre-wrapper">
-        <div class="gallery__slider__wrapper">
-          <base-button
-            class="gallery__slider__button-left"
-            @clicked="showPrevCar"
-            :imgSrc="require('@/assets/imgs/left_arrow.svg')"
-          />
-          <!-- slider start -->
-          <div class="gallery__slider">
-            <div
-              class="gallery__slider__images__wrapper"
-              :style="{ translate: `${currentSliderShift}px 0` }"
-              ref="slider"
-            >
-              <img
-                v-for="(sliderImgSrc, idx) of sliderImgsSrcs"
-                :key="idx"
-                :src="require(`@/assets/${sliderImgSrc}`)"
-                class="gallery__slider__images__item"
-              />
-            </div>
-          </div>
-          <!-- slider end -->
-          <base-button
-            class="gallery__slider__button-right"
-            @clicked="showNextCar"
-            :imgSrc="require('@/assets/imgs/right_arrow.svg')"
-          />
-        </div>
-        <div class="gallery__slider__pagination__wrapper">
-          <div class="gallery__slider__pagination">
-            <div
-              v-for="(_, idx) in cars"
-              :key="idx"
-              :class="{
-                colored: idx === currentCarIndex,
-                'dark-mode__for-items': true,
-              }"
-              @click="currentCarIndex = idx"
-              class="gallery__slider__pagination__item"
-            ></div>
-          </div>
-        </div>
-      </div>
-      <!-- gallery end -->
+      <base-slider
+        :imgsSrcs="sliderImgsSrcs"
+        @showingImgChanged="setCurrentCarIndex"
+      />
     </div>
     <div v-if="fullSizeMiniImageSrc" class="gallery__full-image__wrapper">
       <button class="button gallery__full-image__close-button">
@@ -119,27 +77,18 @@
 
 <script>
 import BaseButton from "../components/BaseButton.vue";
+import BaseSlider from "../components/BaseSlider.vue";
 import { fetchCars, setCurrentCar } from "@/api.js";
 
 export default {
-  components: {
-    BaseButton,
-  },
-
+  components: { BaseButton, BaseSlider },
   data() {
     return {
       haveCarsLoaded: false,
-
       cars: [],
-
       sliderImgsSrcs: [],
       fullSizeMiniImageSrc: null,
-
       currentCarIndex: 0,
-
-      // shifts in pixels
-      currentSliderShift: 0,
-      oneSliderShift: 0,
     };
   },
 
@@ -150,56 +99,23 @@ export default {
   },
 
   methods: {
-    showNextCar() {
-      const canIncreaseCarIndex = this.currentCarIndex + 1 < this.cars.length;
-
-      if (canIncreaseCarIndex) {
-        this.currentCarIndex++;
-      }
-    },
-
-    showPrevCar() {
-      const canDecreaseCarIndex = this.currentCarIndex - 1 >= 0;
-
-      if (canDecreaseCarIndex) {
-        this.currentCarIndex--;
-      }
-    },
-
     selectCar() {
       setCurrentCar(this.currentCar.name);
       this.$router.pushPath("/request");
     },
-
-    calculateOneSliderShift() {
-      if (this.$refs.slider) {
-        this.oneSliderShift = this.$refs.slider.clientWidth;
-      }
-    },
-  },
-
-  watch: {
-    currentCarIndex(current, prev) {
-      const shiftFactor = current - prev;
-      this.currentSliderShift -= this.oneSliderShift * shiftFactor;
+    setCurrentCarIndex(index) {
+      this.currentCarIndex = index;
     },
   },
 
   mounted() {
     fetchCars().then((cars) => {
       this.cars = cars;
-      this.sliderImgsSrcs = cars.map((car) => car.mainImgSrc);
+      this.sliderImgsSrcs = cars.map((car) =>
+        require(`@/assets/${car.mainImgSrc}`)
+      );
       this.haveCarsLoaded = true;
-
-      this.$nextTick(() => {
-        window.addEventListener("resize", this.calculateOneSliderShift);
-        this.calculateOneSliderShift();
-      });
     });
-  },
-
-  beforeUnmounted() {
-    window.removeEventListener("resize", this.calculateOneSliderShift);
   },
 };
 </script>

@@ -33,7 +33,7 @@
           </div>
           <base-button
             :title="'Выбрать автомобиль'"
-            @clicked="$router.pushPath('/car')"
+            @clicked="$router.push('/car')"
           />
         </div>
         <div class="preview__img-wrapper"></div>

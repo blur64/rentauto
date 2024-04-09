@@ -2,7 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="header__content-wrapper">
-        <div class="logo" @click="$router.pushPath('/')">
+        <div class="logo" @click="$router.push('/')">
           <div class="logo__img-container"></div>
           <div class="logo__text">RentAvto SPB</div>
         </div>
@@ -27,9 +27,9 @@
               <a
                 class="navigation__link"
                 :class="{
-                  navigation__link__active: currentPath === navDataItem.path,
+                  navigation__link__active: $route.path === navDataItem.path,
                 }"
-                @click="$router.pushPath(navDataItem.path)"
+                @click="$router.push(navDataItem.path)"
                 >{{ navDataItem.title }}</a
               >
             </li>
@@ -42,22 +42,13 @@
 
 <script>
 export default {
-  props: {
-    currentPath: {
-      type: String,
-      required: true,
-      default: "/",
-    },
-  },
-
   data() {
     return {
       isBurgerMenuOpened: false,
     };
   },
-
   watch: {
-    currentPath() {
+    "$route.path"() {
       this.isBurgerMenuOpened = false;
     },
   },

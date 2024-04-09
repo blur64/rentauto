@@ -1,66 +1,18 @@
 <template>
   <div class="main__wrapper">
-    <the-header :currentPath="currentPath" />
+    <the-header />
     <main class="main">
-      <component :is="currentRoute.component"></component>
+      <router-view />
     </main>
   </div>
 </template>
 
 <script>
-import PreviewPage from "@/pages/PreviewPage.vue";
-import AboutUsPage from "@/pages/AboutUsPage.vue";
-import CarSelectPage from "@/pages/CarSelectPage.vue";
-import RequestPage from "@/pages/RequestPage.vue";
 import TheHeader from "@/components/TheHeader.vue";
 
-import { routes } from "./api.js";
-
 export default {
-  components: {
-    PreviewPage,
-    AboutUsPage,
-    CarSelectPage,
-    RequestPage,
-    TheHeader,
-  },
-
-  data() {
-    return {
-      currentPath: "",
-    };
-  },
-
-  computed: {
-    currentRoute() {
-      return routes.find((route) => route.path === this.currentPath);
-    },
-
-    isDarkMode() {
-      return this.currentRoute?.isDarkMode;
-    },
-  },
-
-  methods: {
-    changeLocation() {
-      const path = location.pathname;
-      this.currentPath = path.substring(path.lastIndexOf("/"));
-    },
-  },
-
-  created() {
-    this.changeLocation();
-    window.addEventListener("popstate", this.changeLocation);
-  },
-
-  watch: {
-    isDarkMode() {
-      document.documentElement.setAttribute(
-        "data-theme",
-        this.isDarkMode ? "dark" : "light"
-      );
-    },
-  },
+  name: "App",
+  components: { TheHeader },
 };
 </script>
 

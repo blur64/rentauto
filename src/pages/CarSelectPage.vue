@@ -94,7 +94,7 @@ export default {
   methods: {
     selectCar() {
       setCurrentCar(this.currentCar.name);
-      this.$router.pushPath("/request");
+      this.$router.push("/request");
     },
     setCurrentCarIndex(index) {
       this.currentCarIndex = index;

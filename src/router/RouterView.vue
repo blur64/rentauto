@@ -9,25 +9,10 @@ import CarSelectPage from "@/pages/CarSelectPage.vue";
 import RequestPage from "@/pages/RequestPage.vue";
 
 const routes = [
-  { path: "/", component: "PreviewPage", isDarkMode: false, title: "Главная" },
-  {
-    path: "/car",
-    component: "CarSelectPage",
-    isDarkMode: true,
-    title: "Автомобили",
-  },
-  {
-    path: "/request",
-    component: "RequestPage",
-    isDarkMode: true,
-    title: "Форма заявки",
-  },
-  {
-    path: "/about",
-    component: "AboutUsPage",
-    isDarkMode: false,
-    title: "О нас",
-  },
+  { path: "/", component: "PreviewPage", isDarkMode: false },
+  { path: "/car", component: "CarSelectPage", isDarkMode: true },
+  { path: "/request", component: "RequestPage", isDarkMode: true },
+  { path: "/about", component: "AboutUsPage", isDarkMode: false },
 ];
 
 export default {

@@ -75,17 +75,12 @@ const formData = {
   ],
 };
 
-const routes = [
-  { path: "/", component: "PreviewPage", isDarkMode: false, title: "Главная" },
-  { path: "/car", component: "CarSelectPage", isDarkMode: true, title: "Автомобили" },
-  { path: "/request", component: "RequestPage", isDarkMode: true, title: "Форма заявки" },
-  { path: "/about", component: "AboutUsPage", isDarkMode: false, title: "О нас" },
+const navigationData = [
+  { path: "/", title: "Главная" },
+  { path: "/car", title: "Автомобили" },
+  { path: "/request", title: "Форма заявки" },
+  { path: "/about", title: "О нас" },
 ];
-
-const navigationData = routes.map((r) => ({
-  path: r.path,
-  title: r.title,
-}));
 
 function fetchCars() {
   return Promise.resolve(carsData)
@@ -118,7 +113,6 @@ export {
   fetchAddresses,
   fetchCarsNames,
   navigationData,
-  routes,
   setCurrentCar,
   getCurrentCar
 };

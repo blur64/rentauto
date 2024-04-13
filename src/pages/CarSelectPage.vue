@@ -1,6 +1,10 @@
 <template>
   <section class="gallery-section" id="gallery-section__id" v-if="cars.length">
-    <div v-if="fullSizeMiniImageSrc" class="gallery__shadow"></div>
+    <div
+      class="gallery__shadow"
+      v-if="fullSizeMiniImageSrc"
+      @click="closeFullImage"
+    ></div>
     <div class="container">
       <div class="gallery__car-info__wrapper">
         <div class="gallery__car-info__main-info">
@@ -59,7 +63,7 @@
       <button class="button gallery__full-image__close-button">
         <img
           class="gallery__full-image__close-button__img"
-          @click="fullSizeMiniImageSrc = null"
+          @click="closeFullImage"
           src="@/assets/imgs/close.svg"
         />
       </button>
@@ -99,6 +103,9 @@ export default {
     setCurrentCarIndex(index) {
       this.currentCarIndex = index;
     },
+    closeFullImage() {
+      this.fullSizeMiniImageSrc = null;
+    },
   },
   mounted() {
     fetchCars().then((cars) => {
@@ -116,7 +123,7 @@ export default {
 
 .gallery-section {
   position: relative;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 .gallery__car-info__wrapper {
@@ -188,7 +195,7 @@ export default {
 
 .gallery__full-image__wrapper {
   position: fixed;
-  width: 1200px;
+  width: fit-content;
   left: 0;
   right: 0;
   top: 50%;

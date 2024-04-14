@@ -1,10 +1,15 @@
 <template>
   <section class="gallery-section" id="gallery-section__id" v-if="cars.length">
-    <div
-      class="gallery__shadow"
+    <base-modal
       v-if="fullSizeMiniImageSrc"
-      @click="closeFullImage"
-    ></div>
+      @backgroundClicked="closeFullImage"
+      @closeBtnClicked="closeFullImage"
+    >
+      <img
+        :src="require(`@/assets/${fullSizeMiniImageSrc}`)"
+        class="gallery__full-image"
+      />
+    </base-modal>
     <div class="container">
       <div class="gallery__car-info__wrapper">
         <div class="gallery__car-info__main-info">
@@ -59,29 +64,17 @@
         @showingImgChanged="setCurrentCarIndex"
       />
     </div>
-    <div v-if="fullSizeMiniImageSrc" class="gallery__full-image__wrapper">
-      <button class="button gallery__full-image__close-button">
-        <img
-          class="gallery__full-image__close-button__img"
-          @click="closeFullImage"
-          src="@/assets/imgs/close.svg"
-        />
-      </button>
-      <img
-        :src="require(`@/assets/${fullSizeMiniImageSrc}`)"
-        class="gallery__full-image"
-      />
-    </div>
   </section>
 </template>
 
 <script>
 import BaseButton from "../components/BaseButton.vue";
 import BaseSlider from "../components/BaseSlider.vue";
+import BaseModal from "../components/BaseModal.vue";
 import { fetchCars, setCurrentCar } from "@/api.js";
 
 export default {
-  components: { BaseButton, BaseSlider },
+  components: { BaseButton, BaseSlider, BaseModal },
   data() {
     return {
       cars: [],
@@ -193,48 +186,10 @@ export default {
 
 /* GallerySection FullImage */
 
-.gallery__full-image__wrapper {
-  position: fixed;
-  width: fit-content;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translate(0, -50%);
-  margin: 0 auto;
-
-  z-index: 2;
-}
-
 .gallery__full-image {
   display: block;
-  max-width: 1200px;
-  max-height: 700px;
-  margin: 0 auto;
-
+  max-width: 100%;
   object-fit: cover;
-}
-
-.gallery__full-image__close-button {
-  position: absolute;
-  left: 1210px;
-  top: -60px;
-  border: none !important;
-
-  background: transparent;
-}
-
-.gallery__full-image__close-button__img {
-  height: 50px;
-}
-
-.gallery__shadow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  background-color: var(--shadow);
 }
 
 /* Media Rules */
@@ -243,19 +198,6 @@ export default {
   .gallery__car-info__mini-imgs__item {
     width: 160px;
     height: 130px;
-  }
-
-  .gallery__full-image {
-    max-width: 900px;
-    max-height: 600px;
-  }
-
-  .gallery__full-image__wrapper {
-    width: 900px;
-  }
-
-  .gallery__full-image__close-button {
-    left: 930px;
   }
 }
 
@@ -287,20 +229,6 @@ export default {
 
   .gallery__car-info__main-info {
     height: 200px;
-  }
-
-  .gallery__full-image {
-    max-width: 600px;
-    max-height: 400px;
-  }
-
-  .gallery__full-image__wrapper {
-    width: 600px;
-  }
-
-  .gallery__full-image__close-button {
-    left: 620px;
-    top: -60px;
   }
 }
 
@@ -334,20 +262,6 @@ export default {
   .gallery__car-info__mini-imgs__item {
     margin: 0;
     width: 156px;
-  }
-
-  .gallery__full-image {
-    max-width: 494px;
-    max-height: 370px;
-  }
-
-  .gallery__full-image__wrapper {
-    width: 494px;
-  }
-
-  .gallery__full-image__close-button {
-    left: 444px;
-    top: -60px;
   }
 }
 </style>

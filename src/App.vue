@@ -27,7 +27,7 @@ export default {
   --text-primary-inverse: #fafafa;
   --secondary: #d0af38;
   --error: #da0000;
-  --shadow: rgba(26, 24, 24, 0.8);
+  --shadow: rgba(26, 24, 24, 0.9);
 
   color-scheme: light;
 

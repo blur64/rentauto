@@ -4,7 +4,7 @@
       <div class="header__content-wrapper">
         <div class="logo" @click="$router.push('/')">
           <div class="logo__img-container"></div>
-          <div class="logo__text">RentAvto SPB</div>
+          <div class="logo__text">RentAuto SPB</div>
         </div>
         <nav class="navigation__wrapper">
           <div
@@ -76,6 +76,7 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  align-self: stretch;
 }
 
 .logo__img-container {
@@ -94,11 +95,16 @@ export default {
 
 /* Header Navigation */
 
+.navigation__wrapper {
+  /* align-self: stretch; */
+}
+
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 524px;
+  align-content: stretch;
 }
 
 .navigation__link {

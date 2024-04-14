@@ -14,7 +14,7 @@ const router = {
     );
     dispatchEvent(new Event("popstate"));
   },
-}
+};
 
 import routerViewComponent from "@/router/RouterView.vue";
 

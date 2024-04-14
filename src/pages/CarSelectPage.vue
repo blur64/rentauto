@@ -230,13 +230,11 @@ export default {
 .gallery__shadow {
   position: fixed;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 2;
   top: 0;
   left: 0;
-
   background-color: var(--shadow);
-  opacity: 90%;
 }
 
 /* Media Rules */

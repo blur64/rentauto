@@ -159,6 +159,12 @@ body {
 
 /* Basic Media Rules */
 
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 60px;
+  }
+}
+
 @media (max-width: 800px) {
   .container {
     padding: 0 40px;
@@ -168,7 +174,7 @@ body {
 
 @media (max-width: 550px) {
   .container {
-    padding: 0 28px;
+    padding: 0 20px;
   }
 
   input,

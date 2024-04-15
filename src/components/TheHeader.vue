@@ -84,6 +84,7 @@ export default {
   height: 38px;
   background-image: var(--logo-img-url);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .logo__text {

@@ -123,6 +123,8 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+  gap: 32px;
+  max-height: 282px;
 }
 
 .gallery__car-info__main-info {
@@ -131,12 +133,12 @@ export default {
   align-items: flex-start;
   justify-content: space-between;
   height: 242px;
+  flex-basis: 300px;
+  min-width: 160px;
 }
 
 .gallery__car-info__name {
   margin-bottom: 14px;
-  width: 300px;
-
   font-size: var(--fs-very-big);
   font-weight: var(--w-bold);
   letter-spacing: 1px;
@@ -159,22 +161,31 @@ export default {
 
 .gallery__car-info__characteristics__item {
   margin-bottom: 4px;
-  width: 200px;
+}
+
+.gallery__car-info__characteristics__wrapper {
+  flex-basis: 200px;
+  min-width: 160px;
+  max-height: 282px;
+  overflow-y: auto;
 }
 
 .gallery__car-info__characteristics {
   list-style-type: initial;
+  margin-left: 12px;
 }
 
 .gallery__car-info__mini-imgs {
   display: flex;
   justify-content: space-between;
+  min-width: 640px;
   width: 640px;
+  gap: 16px;
   height: 160px;
 }
 
 .gallery__car-info__mini-imgs__item {
-  width: 200px;
+  width: calc(100% / 3);
   border-radius: 8px;
 
   object-fit: cover;
@@ -195,73 +206,90 @@ export default {
 /* Media Rules */
 
 @media (max-width: 1200px) {
-  .gallery__car-info__mini-imgs__item {
-    width: 160px;
+  .gallery__car-info__mini-imgs {
+    min-width: 494px;
+    gap: 12px;
     height: 130px;
   }
 }
 
-@media (max-width: 800px) {
-  .gallery__car-selection-button {
-    font-size: var(--fs-small);
+@media (max-width: 1000px) {
+  .gallery__car-info__wrapper {
+    gap: 16px;
   }
-
-  .gallery__car-info__name {
-    font-size: var(--fs-big);
-    width: 200px;
-  }
-
-  .gallery__car-info__cost__wrapper {
-    font-size: var(--fs-medium);
-  }
-
   .gallery__car-info__mini-imgs {
-    flex-direction: column;
-    width: auto;
-    height: auto;
+    flex-wrap: wrap;
+    height: initial;
+    max-width: 332px;
+    min-width: 332px;
   }
-
   .gallery__car-info__mini-imgs__item {
-    margin-bottom: 8px;
-    width: 200px;
-    height: 110px;
-  }
-
-  .gallery__car-info__main-info {
-    height: 200px;
+    flex-grow: 1;
+    max-height: 115px;
   }
 }
 
-@media (max-width: 550px) {
-  .gallery-section {
-    padding-bottom: 180px;
-  }
-
-  .gallery__car-info__wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .gallery__car-info__main-info {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-  }
-
-  .gallery__car-info__characteristics__wrapper {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-  }
-
+@media (max-width: 766px) {
   .gallery__car-info__mini-imgs {
-    flex-direction: row;
-    margin-top: 100px;
-    grid-column: 1 / 3;
-    grid-row: 2 / 3;
+    width: 332px;
+    min-width: 232px;
   }
-
   .gallery__car-info__mini-imgs__item {
-    margin: 0;
-    width: 156px;
+    min-height: 115px;
+  }
+  .gallery__car-selection-button {
+    font-size: var(--fs-small);
+  }
+  .gallery__car-info__name {
+    font-size: var(--fs-big);
+  }
+  .gallery__car-info__cost__wrapper {
+    font-size: var(--fs-medium);
+  }
+  .gallery__car-info__main-info {
+    flex-basis: 256px;
+  }
+}
+
+@media (max-width: 666px) {
+  .gallery__car-info__wrapper {
+    max-height: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .gallery__car-info__main-info {
+    height: auto;
+  }
+  .gallery__car-info__mini-imgs {
+    width: auto;
+    max-width: none;
+    min-width: auto;
+    flex-grow: 1;
+    margin-top: 12px;
+  }
+  .gallery__car-info__characteristics__wrapper {
+    height: 220px;
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: 527px) {
+  .gallery__car-info__wrapper {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+  .gallery__car-info__main-info {
+    flex-basis: initial;
+  }
+  .gallery__car-selection-button {
+    width: 100%;
+    margin-top: 24px;
+  }
+  .gallery__car-info__characteristics__wrapper {
+    overflow-y: initial;
+    height: auto;
+    flex-basis: initial;
   }
 }
 </style>
